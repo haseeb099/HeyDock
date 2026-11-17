@@ -1,0 +1,19 @@
+# HeyDock website
+
+39-page static website for Intune Limited trading as HeyDock. Build with `python3 build.py`. Shared styles and interactions are in `dist/styles.css` and `dist/app.js`; page generation is in `build.py`.
+
+## Update software
+
+Edit `content/catalog.json`, keeping a unique URL-safe slug for each product, its name, category, icon, summary, features, fit and discovery questions. Run `python3 build.py`, inspect the catalogue and detail page, then deploy through the existing Sites project. New entries automatically create detail pages and searchable catalogue cards. Add new categories to the category selector in `build.py` if necessary. This is source-driven publishing, not a browser CMS. Do not list unsupported features or unlicensed products.
+
+## Public launch dependencies
+
+- Complete trading-name and trademark clearance. An existing HeyDock Mac software product was found at https://heydock.app/ on 17 November 2026; no trademark conclusion has been reached.
+- Obtain a business-owned domain and business email. No domain is registered by this implementation.
+- Confirm Intune Limited company number, registered office, registration jurisdiction and applicable VAT information.
+- Connect a real enquiry receiver and appropriate server-side validation, spam controls, retention and acknowledgement. Current forms explicitly generate local briefs only. No email, booking, ticket or CRM record is submitted.
+- Replace preview disclosures and update privacy information to match actual processing.
+- Confirm supported locations, skills and product details.
+- Remove robots disallow only for an authorised public launch.
+
+Site audience remains owner-private. No visitor analytics or external fonts are used. Do not add secrets or personal data to the repository.
