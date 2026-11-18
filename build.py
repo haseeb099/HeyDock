@@ -33,10 +33,53 @@ visual='''<aside class="capability-panel" aria-labelledby="capability-title">
 </aside>'''
 home=hero('IT SERVICES · SOFTWARE · AI AUTOMATION','IT services, software<br><em>and AI automation.</em>','Get engineers on site, roll out business software or automate a workflow with one delivery partner.','Discuss your project','/contact.html',visual)
 home+='<div class="wrap proof-strip"><span>UK-based team</span><span>UK & European engineering</span><span>On-site + remote</span><span>For businesses & IT partners</span></div>'
-home+=section('CAPABILITIES','One partner.<br>More ways forward.','Support your operations, extend your team and improve your systems through clearly scoped delivery.',cards(services))
 home+=section('WHO WE HELP','Your team, extended.','Two ways to work with HeyDock. The same focus on clear responsibilities and practical delivery.','''<div class="audience-grid"><article><span class="label">FOR IT COMPANIES</span><h3>Your expertise.<br>Our delivery capacity.</h3><p>White-label engineering, remote specialists and project support that fit your customer relationships.</p>'''+link('/partners.html','Explore partnerships','text-link')+'''</article><article><span class="label">FOR BUSINESSES</span><h3>Less IT friction.<br>More room to work.</h3><p>Get support, implement business software or build something new with a single delivery contact.</p>'''+link('/solutions.html','Explore business solutions','text-link')+'</article></div>','pale')
+home+=section(
+ 'SERVICES','Find the right support for your project.',
+ 'Explore one service or combine several for a rollout, an ongoing support arrangement or a new system.',
+ cards(services)+link('/services.html','See all IT services','text-link'),
+)
+home_examples=[
+ ('/engineer-dispatch.html','Cover a site your team can’t reach',
+  'An MSP has a customer site that needs a hardware swap. Agree the site, work order and escalation contact, then define what the engineer should report after the visit.','pin'),
+ ('/it-rollouts-migrations.html','Roll out devices across several offices',
+  'Plan the pilot, rollout windows, asset tracking and handover before deploying to more sites. Identify who can approve a change when the on-site setup differs from the plan.','deploy'),
+ ('/ai-automation.html','Reduce repetitive support work',
+  'Start with one inbox or internal workflow. Identify what an assistant can handle, where a colleague takes over and how you’ll measure whether the pilot saves time.','workflow'),
+]
+home+=section(
+ 'PROJECT EXAMPLES','What can you bring to HeyDock?',
+ 'Use these examples to find the closest match for your project.',
+ cards(home_examples),'pale home-examples',
+)
 home+=section('BUSINESS SOFTWARE','Ready to deploy.<br>Ready to make your own.','Start with an existing solution or commission a custom build. We help scope, configure, deploy and support the right fit.',cards([(f'/software/{p["slug"]}.html',p['name'],p['summary'],p['icon']) for p in catalog[:3]])+link('/software.html','Browse all software','text-link'))
 home+=section('DELIVERY PROCESS','Good work starts with a clear plan.','',steps([('Understand','Define the problem, environment and intended outcome.'),('Scope','Agree the work, people, cost and acceptance criteria.'),('Deliver','Manage implementation, changes and progress.'),('Support','Complete handover and agree the next stage of care.')]))
+home+=section(
+ 'COVERAGE','On site where you need us. Remote where it fits.',
+ 'Share the city, task and preferred date so we can discuss local availability and the skills your work needs.',
+ '<div class="home-coverage-grid"><article><span class="ico">'+icon('pin')+'</span><h3>UK site support</h3><p>Plan engineer visits, hands-on troubleshooting and device rollouts at agreed UK locations.</p></article>'
+ '<article><span class="ico">'+icon('network')+'</span><h3>European projects</h3><p>Discuss country and city coverage, language requirements and scheduling for each site.</p></article>'
+ '<article><span class="ico">'+icon('headset')+'</span><h3>Remote delivery</h3><p>Bring in remote support, technical specialists or software delivery for agreed hours and systems.</p></article></div>'
+ +link('/coverage.html','Check delivery coverage','text-link'),'pale',
+)
+home+=section(
+ 'PLANNING GUIDES','Prepare for your next conversation.',
+ 'Gather the details that help us scope your work, from who needs access to how you’ll judge the outcome.',
+ cards([
+  ('/resources/plan-an-it-rollout.html','Plan an IT rollout','List your sites, equipment, deployment windows and handover needs.','deploy'),
+  ('/resources/choose-business-software.html','Choose business software','Define your process, integrations and licensing requirements before comparing options.','clipboard'),
+  ('/resources/scope-an-ai-pilot.html','Scope an AI pilot','Pick a workflow, a success measure and a clear route to human review.','spark'),
+ ])+link('/resources.html','See all planning guides','text-link'),
+)
+home+=section(
+ 'BEFORE YOU GET STARTED','Questions about working with HeyDock.','',
+ faq([
+  ('Can you work under our brand?','Yes. We scope white-label engineer dispatch and project support for IT providers. We agree who communicates with the end customer, how issues are escalated and what evidence is handed back.'),
+  ('Can I start with a single engineer visit?','Yes. Share the site, preferred date, task and required skills. We can then discuss availability and the scope before confirming a booking.'),
+  ('Can you help us choose between ready-made and custom software?','Yes. We can compare the available options against your process, budget and integration requirements, then scope configuration or custom development where appropriate.'),
+  ('What should I include in a project brief?','Describe the problem, the affected sites or users, the systems involved and your target dates. Tell us what a successful result would look like.'),
+ ]),'pale home-faq',
+)
 page('index.html','IT Services, Software & AI Automation','HeyDock provides IT support, engineer dispatch, remote talent, business software and AI automation.',home)
 page('services.html','Our services','Explore HeyDock IT support, staffing, software and AI services.',hero('OUR SERVICES','Technology support.<br><em>From end to end.</em>','Six connected capabilities. One clear starting point for your next support requirement, project or technical hire.')+section('CHOOSE YOUR STARTING POINT','What can we help you deliver?','',cards(services))+section('ENGAGEMENT OPTIONS','Work with us your way.','The right commercial model depends on the work—not a one-size-fits-all subscription.',steps([('On demand','Scoped engineer visits and support tasks.'),('Project delivery','Defined outcomes with agreed milestones.'),('Dedicated resource','Technical capacity for agreed hours and skills.'),('Ongoing support','Recurring coverage within a defined service schedule.')])), '/services.html')
 data={

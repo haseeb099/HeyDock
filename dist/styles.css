@@ -122,3 +122,45 @@ footer {background: #0c1721}
   .menu-toggle {min-height: 42px}
   .page-hero.hero-with-panel .hero-grid {grid-template-columns: minmax(0, 1fr)}
 }
+
+/* Breadcrumb directly beneath the header */
+.breadcrumb-bar {
+  background: #f4f1ea;
+  border-bottom: 1px solid var(--line);
+}
+.breadcrumbs {
+  align-items: baseline;
+  gap: 4px 10px;
+  padding-block: 13px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.breadcrumbs a {
+  color: #6e522b;
+  font-weight: 750;
+  text-underline-offset: 3px;
+}
+.breadcrumbs [aria-current] {
+  flex: 1;
+  min-width: min(100%, 13ch);
+  overflow-wrap: anywhere;
+}
+.home-examples .card {border-top: 3px solid #a77e40}
+.home-coverage-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 20px;
+}
+.home-coverage-grid article {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(18px, 3vw, 30px);
+}
+.home-coverage-grid h3 {margin-block: 10px}
+.home-coverage-grid p {color: var(--muted); margin: 0}
+.home-faq details {max-width: 800px}
+@media (max-width: 780px) {
+  .breadcrumbs {padding-block: 11px}
+  .home-coverage-grid {grid-template-columns: 1fr}
+}

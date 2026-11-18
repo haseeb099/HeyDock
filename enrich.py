@@ -86,7 +86,7 @@ def enrich(ns):
   t,m=pages[path];pages[path]=(t,m.replace('</main>',block+'</main>'))
  # Link all new pages through the service hub and home; no orphan keyword pages.
  hub=section('SPECIALIST SERVICE AREAS','Explore the full service scope.','Discuss the requirement with HeyDock. Specialist capacity, supplier arrangements and any required credentials are confirmed before delivery.',cards([('/'+s+'.html',t,a[:145]+'…',{'managed-it-services':'headset','microsoft-365':'grid','network-wifi':'network','backup-disaster-recovery':'backup','cybersecurity':'shield','data-centre-support':'server','hardware-break-fix':'tools','it-rollouts-migrations':'deploy','business-connectivity-telephony':'phone','meeting-room-av':'camera','it-asset-disposal':'recycle','it-consultancy':'compass'}.get(s,'code')) for s,t,k,a,*rest in records]))
- for path in ('services.html','index.html'):
+ for path in ('services.html',):
   t,m=pages[path];pages[path]=(t,m.replace('</main>',hub+'</main>'))
  # Improve target titles while leaving brand-led headings visible.
  titles={'index.html':'Business IT Support, Software & AI Automation UK','it-support.html':'Business IT Support & Desktop Support UK','engineer-dispatch.html':'IT Engineer Dispatch & White Label Field Support','remote-talent.html':'Remote IT Engineers & Technical Staffing','custom-software.html':'Custom Software & Business Website Development','ai-automation.html':'AI Automation, Agents & Customer Support Chatbots','partners.html':'White Label IT Support for MSPs & IT Providers','coverage.html':'UK & European IT Engineering Coverage'}
@@ -107,8 +107,12 @@ def enrich(ns):
   m=re.sub(r'<meta property="og:title" content="[^"]*">','<meta property="og:title" content="'+escape(title,quote=True)+' | HeyDock">',m,count=1)
   description=re.search(r'<meta name="description" content="([^"]*)"',m).group(1)
   if path!='index.html':
-   crumb='<div class="wrap breadcrumbs"><a href="/">Home</a><span>/</span><span>'+escape(title)+'</span></div>'
-   m=m.replace('<main id="main">','<main id="main">'+crumb)
+   crumb = (
+    '<div class="breadcrumb-bar"><div class="wrap breadcrumbs" role="navigation" aria-label="Breadcrumb">'
+    '<a href="/">Home</a><span aria-hidden="true">/</span>'
+    '<span aria-current="page">'+escape(title)+'</span></div></div>'
+   )
+   m=m.replace('</header>','</header>'+crumb,1)
   graph=[org,{'@type':'WebSite','@id':origin+'/#website','url':origin+'/','name':'HeyDock','publisher':{'@id':org['@id']}},{'@type':'WebPage','@id':url+'#page','url':url,'name':title,'description':unescape(description),'isPartOf':{'@id':origin+'/#website'},'about':{'@id':org['@id']},'inLanguage':'en-GB'}]
   if path!='index.html':graph.append({'@type':'BreadcrumbList','itemListElement':[{'@type':'ListItem','position':1,'name':'Home','item':origin+'/'},{'@type':'ListItem','position':2,'name':title,'item':url}]})
   if path in [r[0]+'.html' for r in records]+[x+'.html' for x in ns['data']]:graph.append({'@type':'Service','@id':url+'#service','name':title,'description':unescape(description),'provider':{'@id':org['@id']},'url':url})

@@ -4,235 +4,235 @@
   "pages": [
     {
       "page": "index.html",
-      "main_words": 901,
-      "faq_count": 0,
+      "main_words": 995,
+      "faq_count": 4,
       "title": "Business IT Support, Software & AI Automation UK"
     },
     {
       "page": "services.html",
-      "main_words": 529,
+      "main_words": 525,
       "faq_count": 0,
       "title": "Our services"
     },
     {
       "page": "it-support.html",
-      "main_words": 422,
+      "main_words": 413,
       "faq_count": 3,
       "title": "Business IT Support & Desktop Support UK"
     },
     {
       "page": "engineer-dispatch.html",
-      "main_words": 439,
+      "main_words": 429,
       "faq_count": 3,
       "title": "IT Engineer Dispatch & White Label Field Support"
     },
     {
       "page": "remote-talent.html",
-      "main_words": 440,
+      "main_words": 432,
       "faq_count": 3,
       "title": "Remote IT Engineers & Technical Staffing"
     },
     {
       "page": "custom-software.html",
-      "main_words": 431,
+      "main_words": 423,
       "faq_count": 3,
       "title": "Custom Software & Business Website Development"
     },
     {
       "page": "ai-automation.html",
-      "main_words": 461,
+      "main_words": 452,
       "faq_count": 3,
       "title": "AI Automation, Agents & Customer Support Chatbots"
     },
     {
       "page": "software.html",
-      "main_words": 413,
+      "main_words": 408,
       "faq_count": 0,
       "title": "Business software catalogue"
     },
     {
       "page": "software/hr-management.html",
-      "main_words": 496,
+      "main_words": 492,
       "faq_count": 3,
       "title": "HR management"
     },
     {
       "page": "software/small-business-erp.html",
-      "main_words": 498,
+      "main_words": 494,
       "faq_count": 3,
       "title": "Small-business ERP"
     },
     {
       "page": "software/ticketing-service-desk.html",
-      "main_words": 509,
+      "main_words": 503,
       "faq_count": 3,
       "title": "Ticketing & service desk"
     },
     {
       "page": "software/booking-management.html",
-      "main_words": 493,
+      "main_words": 489,
       "faq_count": 3,
       "title": "Booking management"
     },
     {
       "page": "software/appointment-scheduling.html",
-      "main_words": 502,
+      "main_words": 498,
       "faq_count": 3,
       "title": "Appointment scheduling"
     },
     {
       "page": "partners.html",
-      "main_words": 345,
+      "main_words": 334,
       "faq_count": 0,
       "title": "White Label IT Support for MSPs & IT Providers"
     },
     {
       "page": "solutions.html",
-      "main_words": 287,
+      "main_words": 282,
       "faq_count": 0,
       "title": "Solutions for businesses"
     },
     {
       "page": "coverage.html",
-      "main_words": 268,
+      "main_words": 260,
       "faq_count": 0,
       "title": "UK & European IT Engineering Coverage"
     },
     {
       "page": "about.html",
-      "main_words": 171,
+      "main_words": 167,
       "faq_count": 0,
       "title": "About HeyDock"
     },
     {
       "page": "how-we-work.html",
-      "main_words": 154,
+      "main_words": 149,
       "faq_count": 4,
       "title": "How we work"
     },
     {
       "page": "resources.html",
-      "main_words": 80,
+      "main_words": 76,
       "faq_count": 0,
       "title": "Planning guides"
     },
     {
       "page": "resources/plan-an-it-rollout.html",
-      "main_words": 108,
+      "main_words": 102,
       "faq_count": 0,
       "title": "Plan an IT rollout"
     },
     {
       "page": "resources/choose-business-software.html",
-      "main_words": 103,
+      "main_words": 98,
       "faq_count": 0,
       "title": "Choose business software"
     },
     {
       "page": "resources/scope-an-ai-pilot.html",
-      "main_words": 106,
+      "main_words": 100,
       "faq_count": 0,
       "title": "Scope an AI pilot"
     },
     {
       "page": "contact.html",
-      "main_words": 288,
+      "main_words": 282,
       "faq_count": 0,
       "title": "Contact and project enquiries"
     },
     {
       "page": "privacy.html",
-      "main_words": 199,
+      "main_words": 195,
       "faq_count": 0,
       "title": "Privacy information"
     },
     {
       "page": "terms.html",
-      "main_words": 168,
+      "main_words": 162,
       "faq_count": 0,
       "title": "Website and company information"
     },
     {
       "page": "accessibility.html",
-      "main_words": 101,
+      "main_words": 98,
       "faq_count": 0,
       "title": "Accessibility"
     },
     {
       "page": "404.html",
-      "main_words": 36,
+      "main_words": 31,
       "faq_count": 0,
       "title": "Page not found"
     },
     {
       "page": "managed-it-services.html",
-      "main_words": 578,
+      "main_words": 571,
       "faq_count": 3,
       "title": "Managed IT support for businesses"
     },
     {
       "page": "microsoft-365.html",
-      "main_words": 528,
+      "main_words": 521,
       "faq_count": 3,
       "title": "Microsoft 365 support and migration"
     },
     {
       "page": "network-wifi.html",
-      "main_words": 526,
+      "main_words": 519,
       "faq_count": 3,
       "title": "Business network and Wi-Fi support"
     },
     {
       "page": "backup-disaster-recovery.html",
-      "main_words": 542,
+      "main_words": 535,
       "faq_count": 3,
       "title": "Backup and disaster recovery planning"
     },
     {
       "page": "cybersecurity.html",
-      "main_words": 525,
+      "main_words": 520,
       "faq_count": 3,
       "title": "Business cybersecurity support"
     },
     {
       "page": "data-centre-support.html",
-      "main_words": 544,
+      "main_words": 536,
       "faq_count": 3,
       "title": "Data centre smart hands and support"
     },
     {
       "page": "it-rollouts-migrations.html",
-      "main_words": 524,
+      "main_words": 517,
       "faq_count": 3,
       "title": "IT rollouts and office migrations"
     },
     {
       "page": "hardware-break-fix.html",
-      "main_words": 519,
+      "main_words": 512,
       "faq_count": 3,
       "title": "Hardware maintenance and break-fix support"
     },
     {
       "page": "it-asset-disposal.html",
-      "main_words": 539,
+      "main_words": 531,
       "faq_count": 3,
       "title": "IT asset retirement and disposal coordination"
     },
     {
       "page": "meeting-room-av.html",
-      "main_words": 507,
+      "main_words": 500,
       "faq_count": 3,
       "title": "Meeting room and AV support"
     },
     {
       "page": "business-connectivity-telephony.html",
-      "main_words": 527,
+      "main_words": 520,
       "faq_count": 3,
       "title": "Business connectivity and cloud telephony"
     },
     {
       "page": "it-consultancy.html",
-      "main_words": 522,
+      "main_words": 515,
       "faq_count": 3,
       "title": "IT consultancy and site surveys"
     }
