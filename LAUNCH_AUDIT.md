@@ -34,3 +34,12 @@ Use Cloudflare Pages: branch main, framework None, build `python3 build.py`, out
 Use immutable deployments. To restore, choose the last known working deployment in Cloudflare and roll back; confirm homepage, contact page, assets, headers and 404. Source recovery: clone the repository and run the build with the same origin/indexing variables. Rehearse this on a separate preview before public launch.
 
 After launch, configure an external HTTPS uptime monitor for homepage and contact route and a monitored notification address. Review email failures with the selected sender. Do not log enquiry contents or credentials in application logs.
+
+## Follow-up verification — 18 November 2026
+
+- The Sites checkout opened from a clean workspace. The 39-page release passed the audit and deployed to the existing private preview as version 4. Logged-out requests to the homepage and contact page returned 401 with `Referrer-Policy: no-referrer`. Those responses came from the sign-in gateway. Public Cloudflare response headers and production 404 behaviour still require a deployment on the customer domain.
+- Chrome loaded the release homepage. The catalogue keyboard-opened category selector filtered to one Scheduling result, and Reset restored five results.
+- The contact page had no document-level horizontal overflow at an observed 375 CSS pixels. The mobile menu opened and Escape closed it. The engineer-dispatch enquiry link preselected its service. The form rejected missing required input and produced a local brief with synthetic data. Editing restored the entered values. The checkbox responded to Space after the automated pointer click failed. Physical touch and broader mobile/browser coverage remain open.
+- Lighthouse 13.6.0 was available, but Chromium could not open its debugging socket in the runner. No valid mobile or desktop scores were generated.
+- A limited scan of the three GitHub commits through the release found no matches for the tested private-key and token signatures. The scan does not cover custom credential formats.
+- Email delivery, SPF/DKIM/DMARC and public uptime monitoring remain open pending the customer domain, mailbox, form delivery setup and monitoring access.
