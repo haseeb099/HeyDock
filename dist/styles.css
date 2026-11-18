@@ -98,3 +98,27 @@ footer {background: #0c1721}
     to {transform: translateY(0)}
   }
 }
+
+/* Compact navigation and page introductions */
+.nav {height: 68px; gap: 18px}
+.nav .logo {font-size: 27px}
+.nav .small-btn {padding: 10px 14px}
+.preview-strip {padding-block: 4px}
+.page-hero {padding: clamp(34px, 4.3vw, 60px) 0}
+.page-hero .hero-grid {grid-template-columns: minmax(0, 1fr)}
+.page-hero.hero-with-panel .hero-grid {grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 54px)}
+.page-hero h1 {font-size: clamp(36px, 4.15vw, 58px); margin-bottom: 16px}
+.page-hero .eyebrow {margin-bottom: 14px}
+.page-hero .lead {margin-bottom: 0}
+.page-hero .actions {margin-top: 20px}
+.capability-panel {padding: clamp(14px, 2.4vw, 27px)}
+.capability-panel a {min-height: 58px; padding-block: 9px}
+.ico {width: 54px; height: 54px; background: #172d3d; border-color: #344c5d; color: #f4d89f}
+.ico svg {width: 29px; height: 29px}
+.capability-panel a > svg {width: 27px; height: 27px}
+@media (max-width: 780px) {
+  .nav {height: 60px}
+  nav {top: 100%}
+  .menu-toggle {min-height: 42px}
+  .page-hero.hero-with-panel .hero-grid {grid-template-columns: minmax(0, 1fr)}
+}

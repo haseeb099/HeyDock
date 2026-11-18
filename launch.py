@@ -5,6 +5,20 @@ from html import escape
 
 def prepare(ns):
  ns['icons'].update({
+ 'headset':'<path d="M3 14v-3a9 9 0 0 1 18 0v3m0 4c0 2-2 3-5 3h-3"/><rect x="3" y="11" width="4" height="7" rx="1"/><rect x="17" y="11" width="4" height="7" rx="1"/>',
+ 'package':'<path d="m12 3 9 5v9l-9 5-9-5V8l9-5zm0 10 9-5m-9 5L3 8m9 5v9M7 5.8l9 5"/>',
+ 'clipboard':'<rect x="5" y="5" width="14" height="16" rx="2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M8 12h8m-8 4h6"/>',
+ 'chat':'<path d="M3 4h18v12H9l-6 4V4zm4 5h10m-10 3h6"/>',
+ 'book':'<path d="M12 6v15m0-15c-4-3-8-3-10-2v15c4-1 7 0 10 2 3-2 6-3 10-2V4c-2-1-6-1-10 2z"/>',
+ 'workflow':'<rect x="8" y="2" width="8" height="6" rx="1"/><rect x="2" y="16" width="7" height="6" rx="1"/><rect x="15" y="16" width="7" height="6" rx="1"/><path d="M12 8v4m-7 4v-4h14v4"/>',
+ 'browser':'<rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 9h20M5 6.5h1m2 0h1m1 6-3 2 3 2m4-4 3 2-3 2"/>',
+ 'chart':'<path d="M3 3v18h18M8 17v-5m5 5V8m5 9V5"/>',
+ 'bell':'<path d="M5 17h14l-2-3V9a5 5 0 0 0-10 0v5l-2 3zm5 3a2 2 0 0 0 4 0"/>',
+ 'lock':'<rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3m-4 4v3"/>',
+ 'transfer':'<path d="M3 8h17m-4-4 4 4-4 4M21 16H4m4-4-4 4 4 4"/>',
+ 'camera':'<rect x="2" y="5" width="14" height="14" rx="2"/><path d="m16 10 6-4v12l-6-4"/>',
+ 'plug':'<path d="M8 3v6m8-6v6M6 9h12v3a6 6 0 0 1-12 0zm6 9v4"/>',
+ 'account':'<rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="10" r="2"/><path d="M5 15c1-3 5-3 6 0m3-5h5m-5 4h5"/>',
  'network':'<circle cx="12" cy="5" r="3"/><path d="M12 8v5M4 13h16M4 13v4m8-4v4m8-4v4"/><path d="M2 17h4v4H2zm8 0h4v4h-4zm8 0h4v4h-4z"/>',
  'backup':'<path d="M4 8a8 8 0 1 1-1 8M4 3v5h5M12 7v6l4 2"/>',
  'server':'<rect x="3" y="2" width="18" height="8" rx="2"/><rect x="3" y="14" width="18" height="8" rx="2"/><path d="M6 6h1m3 0h8M6 18h1m3 0h8"/>',
