@@ -164,3 +164,19 @@ footer {background: #0c1721}
   .breadcrumbs {padding-block: 11px}
   .home-coverage-grid {grid-template-columns: 1fr}
 }
+
+/* Enquiry form states and buy-from helpers */
+.hp{position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
+.form-status{margin:0 0 16px;padding:14px 16px;border-radius:8px;font-size:14px;font-weight:600}
+.form-status.sending{background:#eef3ea;color:#314338}
+.form-status.error{background:#f8e8e4;color:#6b2f24;border:1px solid #e2b4aa}
+#enquiry-success{border:1px solid var(--line);border-radius:12px;padding:28px;background:white}
+#enquiry-success .actions{margin-top:18px}
+.notice-panel{background:#fff;border:1px dashed #b7a47a;border-radius:12px;padding:22px 24px}
+.notice-panel p{margin-bottom:12px}
+.home-coverage-follow{margin-top:28px;margin-bottom:8px}
+button.btn[disabled],.btn[aria-busy="true"]{opacity:.72;cursor:wait;transform:none}
+@media (max-width:780px){
+  .page-hero .actions{display:grid;grid-template-columns:1fr;gap:10px}
+  .page-hero .actions .btn{width:100%;justify-content:center}
+}

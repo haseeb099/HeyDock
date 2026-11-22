@@ -33,13 +33,13 @@ def finalize():
  origin=os.environ.get('HEYDOCK_ORIGIN','https://nexorvanta-business-preview.sproutingbadge2.chatgpt.site').rstrip('/')
  hashes=set()
  for file in Path('dist').rglob('*.html'):
-  text=file.read_text()
+  text=file.read_text(encoding='utf-8')
   for block in re.findall(r'<script type="application/ld\+json">(.*?)</script>',text,re.S):
    hashes.add("'sha256-"+base64.b64encode(hashlib.sha256(block.encode()).digest()).decode()+"'")
   tags='<meta property="og:image" content="'+escape(origin)+'/social-preview.png"><meta property="og:image:alt" content="HeyDock — IT Services, Software and AI Automation"><meta name="twitter:card" content="summary_large_image">'
   text=text.replace('</head>',tags+'</head>')
-  file.write_text(text)
- csp="default-src 'none'; script-src 'self' "+' '.join(sorted(hashes))+"; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; form-action 'none'; frame-ancestors 'none'; base-uri 'none'; object-src 'none'; upgrade-insecure-requests"
- Path('dist/_headers').write_text('/*\n  Content-Security-Policy: '+csp+'\n  X-Content-Type-Options: nosniff\n  X-Frame-Options: DENY\n  Referrer-Policy: strict-origin-when-cross-origin\n  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()\n  Strict-Transport-Security: max-age=31536000\n')
- Path('dist/social-preview.svg').write_text('<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><rect width="1200" height="630" fill="#142a35"/><circle cx="1030" cy="130" r="270" fill="none" stroke="#daf47c" stroke-width="2"/><text x="85" y="270" font-family="Arial,sans-serif" font-size="140" font-weight="bold" fill="#daf47c">HeyDock.</text><text x="90" y="365" font-family="Arial,sans-serif" font-size="42" fill="white">Your IT team. One hello away.</text><text x="90" y="510" font-family="Arial,sans-serif" font-size="27" fill="#d2dcd8">IT Services · Software · AI Automation</text></svg>')
+  file.write_text(text,encoding='utf-8')
+ csp="default-src 'none'; script-src 'self' "+' '.join(sorted(hashes))+"; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'; object-src 'none'; upgrade-insecure-requests"
+ Path('dist/_headers').write_text('/*\n  Content-Security-Policy: '+csp+'\n  X-Content-Type-Options: nosniff\n  X-Frame-Options: DENY\n  Referrer-Policy: strict-origin-when-cross-origin\n  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()\n  Strict-Transport-Security: max-age=31536000\n',encoding='utf-8')
+ Path('dist/social-preview.svg').write_text('<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><rect width="1200" height="630" fill="#142a35"/><circle cx="1030" cy="130" r="270" fill="none" stroke="#daf47c" stroke-width="2"/><text x="85" y="270" font-family="Arial,sans-serif" font-size="140" font-weight="bold" fill="#daf47c">HeyDock.</text><text x="90" y="365" font-family="Arial,sans-serif" font-size="42" fill="white">Your IT team. One hello away.</text><text x="90" y="510" font-family="Arial,sans-serif" font-size="27" fill="#d2dcd8">IT Services · Software · AI Automation</text></svg>',encoding='utf-8')
  # Social SVG is a source asset; some crawlers require raster previews. Record this in the audit.

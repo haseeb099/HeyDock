@@ -4,9 +4,9 @@
   "pages": [
     {
       "page": "index.html",
-      "main_words": 995,
+      "main_words": 987,
       "faq_count": 4,
-      "title": "Business IT Support, Software & AI Automation UK"
+      "title": "On-site IT Support & Engineer Dispatch UK"
     },
     {
       "page": "services.html",
@@ -22,7 +22,7 @@
     },
     {
       "page": "engineer-dispatch.html",
-      "main_words": 429,
+      "main_words": 752,
       "faq_count": 3,
       "title": "IT Engineer Dispatch & White Label Field Support"
     },
@@ -82,7 +82,7 @@
     },
     {
       "page": "partners.html",
-      "main_words": 334,
+      "main_words": 606,
       "faq_count": 0,
       "title": "White Label IT Support for MSPs & IT Providers"
     },
@@ -100,7 +100,7 @@
     },
     {
       "page": "about.html",
-      "main_words": 167,
+      "main_words": 216,
       "faq_count": 0,
       "title": "About HeyDock"
     },
@@ -136,25 +136,25 @@
     },
     {
       "page": "contact.html",
-      "main_words": 282,
+      "main_words": 301,
       "faq_count": 0,
       "title": "Contact and project enquiries"
     },
     {
       "page": "privacy.html",
-      "main_words": 195,
+      "main_words": 293,
       "faq_count": 0,
       "title": "Privacy information"
     },
     {
       "page": "terms.html",
-      "main_words": 162,
+      "main_words": 163,
       "faq_count": 0,
       "title": "Website and company information"
     },
     {
       "page": "accessibility.html",
-      "main_words": 98,
+      "main_words": 89,
       "faq_count": 0,
       "title": "Accessibility"
     },
