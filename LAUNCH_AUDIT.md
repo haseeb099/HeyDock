@@ -42,14 +42,14 @@
 
 ## Company disclosure (Companies House 17100814)
 
-- Operator: Infintree Limited; jurisdiction England and Wales; office Flat, 38a The Common, Hatfield, United Kingdom, AL10 0LU; contact hey@heydock.com
+- Operator: Infintree Limited; jurisdiction England and Wales; office Flat, 38a The Common, Hatfield, United Kingdom, AL10 0LU; contact operations@hdocks.com
 - Full disclosure on `/contact.html#company-details`; compact footer link only
 - VAT still blank until verified
 
 ## Still required for production go-live
 
 1. Final HTTPS domain → `HEYDOCK_ORIGIN`
-2. Cloudflare Function secrets: `RESEND_API_KEY`, Resend-verified `HEYDOCK_FROM_EMAIL`, `HEYDOCK_TO_EMAIL=hey@heydock.com` — **live inbox delivery not verified in this session**
+2. Cloudflare Function secrets: `RESEND_API_KEY`, Resend-verified `HEYDOCK_FROM_EMAIL`, `HEYDOCK_TO_EMAIL=operations@hdocks.com` — **live inbox delivery not verified in this session**
 3. Any approved city list, support hours, complaint SLAs or security certifications before publishing as commitments
 4. Approved public downloads (if any) for NDAs/MSAs/insurance — otherwise keep private
 5. Cloudflare Pages: public visitor access (no sign-in gate), custom domain, then indexing after launch checks

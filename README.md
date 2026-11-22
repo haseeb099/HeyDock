@@ -44,7 +44,7 @@ The contact form posts JSON to `POST /api/enquiry` (`functions/api/enquiry.js`).
 | --- | --- | --- |
 | `RESEND_API_KEY` | Yes | Resend API key (`re_…`). Server-side only. |
 | `HEYDOCK_FROM_EMAIL` | Yes | Verified Resend sender, e.g. `HeyDock <hello@your-domain>`. |
-| `HEYDOCK_TO_EMAIL` | Yes | Monitored business inbox. Production value: `hey@heydock.com`. |
+| `HEYDOCK_TO_EMAIL` | Yes | Monitored business inbox. Production value: `operations@hdocks.com`. |
 | `HEYDOCK_FROM_EMAIL` | Yes | Resend-verified sender, e.g. `HeyDock <hello@your-verified-domain>`. |
 | `RESEND_API_KEY` | Yes | Resend API key (`re_…`). Cloudflare secret only. |
 
@@ -52,10 +52,10 @@ Setup steps:
 
 1. Create a Resend account and verify the sending domain (SPF/DKIM/DMARC as Resend instructs).
 2. Create an API key with send permission.
-3. In Cloudflare Pages, set `RESEND_API_KEY` (secret), `HEYDOCK_FROM_EMAIL` (verified sender) and `HEYDOCK_TO_EMAIL=hey@heydock.com` for Production (and Preview if you want preview submissions).
+3. In the Cloudflare Worker settings, add `RESEND_API_KEY` as a secret and `HEYDOCK_FROM_EMAIL` as a Resend-verified sender. `wrangler.jsonc` sets the production recipient to `operations@hdocks.com`.
 4. Deploy so `/api/enquiry` is live on the same host as the static site.
-5. Submit a synthetic enquiry from `/contact.html` and confirm delivery in `hey@heydock.com`.
-6. Public contact display uses `hey@heydock.com` from `content/site.json` / `HEYDOCK_CONTACT_EMAIL`.
+5. Submit a synthetic enquiry from `/contact.html` and confirm delivery in `operations@hdocks.com`.
+6. Public contact display uses `operations@hdocks.com` from `content/site.json` / `HEYDOCK_CONTACT_EMAIL`.
 
 ## Cloudflare Pages deployment
 
