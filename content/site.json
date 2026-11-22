@@ -6,5 +6,6 @@
   "registration_jurisdiction": "England and Wales",
   "vat_number": "",
   "contact_email": "hey@heydock.com",
+  "contact_phone": "+44 7984786466",
   "notes": "Verified from Companies House company 17100814 (active private limited company; registered office matches; jurisdiction England and Wales from Companies House registration). Environment variables override these values. VAT left blank until a verified number is supplied."
 }

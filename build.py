@@ -12,11 +12,13 @@ def _cfg(env_key, site_key):
   return os.environ[env_key].strip()
  return (site.get(site_key,'') or '').strip()
 CONTACT_EMAIL=_cfg('HEYDOCK_CONTACT_EMAIL','contact_email')
+CONTACT_PHONE=_cfg('HEYDOCK_CONTACT_PHONE','contact_phone')
 OPERATOR_NAME=_cfg('HEYDOCK_OPERATOR_NAME','operator_name')
 OPERATOR_NUMBER=_cfg('HEYDOCK_COMPANY_NUMBER','company_number')
 OPERATOR_OFFICE=_cfg('HEYDOCK_REGISTERED_OFFICE','registered_office')
 OPERATOR_JURISDICTION=_cfg('HEYDOCK_REGISTRATION_JURISDICTION','registration_jurisdiction')
 OPERATOR_VAT=_cfg('HEYDOCK_VAT_NUMBER','vat_number')
+CONTACT_PHONE_HREF=''.join(ch for ch in CONTACT_PHONE if ch.isdigit() or ch=='+') if CONTACT_PHONE else ''
 missing_disclosures=[]
 if not OPERATOR_NAME: missing_disclosures.append('operator_name')
 if not OPERATOR_NUMBER: missing_disclosures.append('company_number')
@@ -28,6 +30,7 @@ Path('content/launch-disclosures.json').write_text(json.dumps({
  'missing_disclosures': missing_disclosures,
  'operator_name_set': bool(OPERATOR_NAME),
  'contact_email_set': bool(CONTACT_EMAIL),
+ 'contact_phone_set': bool(CONTACT_PHONE),
  'jurisdiction_set': bool(OPERATOR_JURISDICTION),
 }, indent=2), encoding='utf-8')
 if PUBLIC_BUILD and missing_disclosures:
@@ -47,6 +50,8 @@ contact_email_block=(
   if PUBLIC_BUILD else
   '<p class="small">Preview: set <code>HEYDOCK_CONTACT_EMAIL</code> to show a direct business email on public pages.</p>')
 )
+if CONTACT_PHONE and CONTACT_PHONE_HREF:
+ contact_email_block+=f'<p>Call <a href="tel:{E(CONTACT_PHONE_HREF)}">{E(CONTACT_PHONE)}</a>.</p>'
 def company_details_block(anchor=False):
  attrs=' id="company-details"' if anchor else ''
  rows=[]
@@ -61,6 +66,8 @@ def company_details_block(anchor=False):
  if OPERATOR_VAT: rows.append(f'<p>VAT number: {E(OPERATOR_VAT)}</p>')
  if CONTACT_EMAIL:
   rows.append(f'<p>Email: <a href="mailto:{E(CONTACT_EMAIL)}">{E(CONTACT_EMAIL)}</a></p>')
+ if CONTACT_PHONE and CONTACT_PHONE_HREF:
+  rows.append(f'<p>Phone: <a href="tel:{E(CONTACT_PHONE_HREF)}">{E(CONTACT_PHONE)}</a></p>')
  rows.append('<p>See also <a href="/documents.html">Documents &amp; policies</a>.</p>')
  return f'<div class="prose company-details"{attrs}>'+''.join(rows)+'</div>'
 def operator_html():
