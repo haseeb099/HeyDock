@@ -33,6 +33,9 @@ jobs:
           HEYDOCK_ORIGIN: https://example.com
           HEYDOCK_PUBLIC: '1'
           HEYDOCK_CONTACT_EMAIL: enquiries@example.com
+          HEYDOCK_OPERATOR_NAME: Example Operator Ltd
+          HEYDOCK_COMPANY_NUMBER: '00000000'
+          HEYDOCK_REGISTERED_OFFICE: 1 Example Street, London, AA1 1AA
         run: |
           python3 build.py
           python3 audit.py
@@ -42,7 +45,13 @@ jobs:
           grep -q 'https://example.com/' dist/sitemap.xml
           grep -q 'rel="canonical" href="https://example.com/"' dist/index.html
           grep -q 'enquiries@example.com' dist/contact.html
+          grep -q 'Example Operator Ltd' dist/terms.html
+          test -f dist/documents.html
+          test -f dist/cookies.html
+          test -f dist/vendor-onboarding.html
           ! grep -q 'preview-strip' dist/index.html
+          ! grep -qi 'pending confirmation' dist/index.html dist/terms.html dist/privacy.html
+          ! grep -qi 'trading as' dist/*.html
 
       - name: Enquiry endpoint tests (mocked provider)
         run: node --test tests/enquiry.test.mjs

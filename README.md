@@ -19,10 +19,14 @@ Output directory: `dist`. No pip/npm packages are required for the static build.
 | --- | --- |
 | `HEYDOCK_ORIGIN` | Final HTTPS origin used for canonical URLs, Open Graph, sitemap and robots. Default is the private preview origin. |
 | `HEYDOCK_PUBLIC=1` | Allow indexing (`robots.txt` Allow + `index,follow`). Preview/default builds stay noindex. Public builds fail if the origin is still a `chatgpt.site` preview or non-HTTPS. |
-| `HEYDOCK_CONTACT_EMAIL` | Optional public business email shown on contact/privacy/about when set. |
-| `HEYDOCK_OPERATOR_NAME` | Optional legal operator name for disclosures. |
-| `HEYDOCK_COMPANY_NUMBER` | Optional company number for disclosures. |
-| `HEYDOCK_REGISTERED_OFFICE` | Optional registered office for disclosures. |
+| `HEYDOCK_CONTACT_EMAIL` | Public business email when verified (overrides `content/site.json`). |
+| `HEYDOCK_OPERATOR_NAME` | Verified legal operator name (overrides `content/site.json`). |
+| `HEYDOCK_COMPANY_NUMBER` | Verified company number. |
+| `HEYDOCK_REGISTERED_OFFICE` | Verified registered office. |
+| `HEYDOCK_REGISTRATION_JURISDICTION` | Optional registration jurisdiction. |
+| `HEYDOCK_VAT_NUMBER` | Optional VAT number when verified. |
+
+Verified operator fields also live in `content/site.json` (empty until confirmed). Production builds print a disclosure report for any missing required fields and must not publish “pending confirmation” copy. CI uses synthetic fixture values only.
 
 Example production build:
 

@@ -34,14 +34,22 @@
 - Enquiry bodies must not be written to logs; the Function logs only a failure code/status.
 - Rate limiting is best-effort per Cloudflare isolate (appropriate for Pages Functions; not a global edge rate store).
 
+## Documents & policies (follow-up on this PR)
+
+- Added `/documents.html` hub plus cookies, complaints, support/escalation, security/data-handling and vendor-onboarding pages; expanded privacy, terms, accessibility and how-we-work.
+- Operator details use `content/site.json` + env overrides. Public builds report missing disclosures and avoid “pending confirmation” copy; CI uses synthetic fixture identities only.
+- No client template pack was present in the repo; no agreements/insurance downloads published.
+
 ## Still required from the business
 
 1. Final HTTPS domain → `HEYDOCK_ORIGIN`
 2. Resend account: verified domain/sender, API key, monitored inbox → `RESEND_API_KEY`, `HEYDOCK_FROM_EMAIL`, `HEYDOCK_TO_EMAIL`
-3. Public display email if desired → `HEYDOCK_CONTACT_EMAIL`
-4. Legal operator name, company number, registered office (VAT if applicable) → optional build env `HEYDOCK_OPERATOR_NAME`, `HEYDOCK_COMPANY_NUMBER`, `HEYDOCK_REGISTERED_OFFICE`
-5. Any approved city list, support hours or SLA text before publishing as commitments
-6. Cloudflare Pages project settings: public visitor access (no sign-in gate), custom domain, production env vars, then indexing only after launch checks
+3. Public display email → `HEYDOCK_CONTACT_EMAIL` / `content/site.json`
+4. Verified legal operator name, company number, registered office (and jurisdiction/VAT if applicable)
+5. Any approved city list, support hours, complaint SLAs or security certifications before publishing as commitments
+6. Approved public downloads (if any) for NDAs/MSAs/insurance — otherwise keep private
+7. Cloudflare Pages project settings: public visitor access (no sign-in gate), custom domain, production env vars, then indexing only after launch checks
+8. Public crawlability and mobile performance on the deployed URL
 
 ## Deployment reminder
 

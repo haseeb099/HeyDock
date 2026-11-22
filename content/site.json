@@ -1,0 +1,10 @@
+{
+  "brand": "HeyDock",
+  "operator_name": "",
+  "company_number": "",
+  "registered_office": "",
+  "registration_jurisdiction": "",
+  "vat_number": "",
+  "contact_email": "",
+  "notes": "Verified operator and contact fields only. Environment variables override these values. Do not invent HeyDock Ltd, company numbers, offices, jurisdictions or VAT numbers."
+}

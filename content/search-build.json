@@ -82,7 +82,7 @@
     },
     {
       "page": "partners.html",
-      "main_words": 606,
+      "main_words": 633,
       "faq_count": 0,
       "title": "White Label IT Support for MSPs & IT Providers"
     },
@@ -100,19 +100,13 @@
     },
     {
       "page": "about.html",
-      "main_words": 216,
+      "main_words": 231,
       "faq_count": 0,
       "title": "About HeyDock"
     },
     {
-      "page": "how-we-work.html",
-      "main_words": 149,
-      "faq_count": 4,
-      "title": "How we work"
-    },
-    {
       "page": "resources.html",
-      "main_words": 76,
+      "main_words": 97,
       "faq_count": 0,
       "title": "Planning guides"
     },
@@ -136,27 +130,69 @@
     },
     {
       "page": "contact.html",
-      "main_words": 301,
+      "main_words": 314,
       "faq_count": 0,
       "title": "Contact and project enquiries"
     },
     {
-      "page": "privacy.html",
-      "main_words": 293,
+      "page": "documents.html",
+      "main_words": 212,
       "faq_count": 0,
-      "title": "Privacy information"
+      "title": "Documents and policies"
+    },
+    {
+      "page": "privacy.html",
+      "main_words": 727,
+      "faq_count": 0,
+      "title": "Privacy notice"
+    },
+    {
+      "page": "cookies.html",
+      "main_words": 213,
+      "faq_count": 0,
+      "title": "Cookies and browser storage"
     },
     {
       "page": "terms.html",
-      "main_words": 163,
+      "main_words": 447,
       "faq_count": 0,
-      "title": "Website and company information"
+      "title": "Website terms"
     },
     {
       "page": "accessibility.html",
-      "main_words": 89,
+      "main_words": 216,
       "faq_count": 0,
-      "title": "Accessibility"
+      "title": "Accessibility statement"
+    },
+    {
+      "page": "complaints.html",
+      "main_words": 210,
+      "faq_count": 0,
+      "title": "Complaints"
+    },
+    {
+      "page": "how-we-work.html",
+      "main_words": 270,
+      "faq_count": 0,
+      "title": "How we work"
+    },
+    {
+      "page": "support-and-escalation.html",
+      "main_words": 171,
+      "faq_count": 0,
+      "title": "Support and escalation"
+    },
+    {
+      "page": "security-and-data-handling.html",
+      "main_words": 289,
+      "faq_count": 0,
+      "title": "Security and data handling"
+    },
+    {
+      "page": "vendor-onboarding.html",
+      "main_words": 210,
+      "faq_count": 0,
+      "title": "Vendor onboarding for MSPs"
     },
     {
       "page": "404.html",
