@@ -40,16 +40,21 @@
 - Operator details use `content/site.json` + env overrides. Public builds report missing disclosures and avoid “pending confirmation” copy; CI uses synthetic fixture identities only.
 - No client template pack was present in the repo; no agreements/insurance downloads published.
 
-## Still required from the business
+## Company disclosure (Companies House 17100814)
+
+- Operator: Infintree Limited; jurisdiction England and Wales; office Flat, 38a The Common, Hatfield, United Kingdom, AL10 0LU; contact hey@heydock.com
+- Full disclosure on `/contact.html#company-details`; compact footer link only
+- VAT still blank until verified
+
+## Still required for production go-live
 
 1. Final HTTPS domain → `HEYDOCK_ORIGIN`
-2. Resend account: verified domain/sender, API key, monitored inbox → `RESEND_API_KEY`, `HEYDOCK_FROM_EMAIL`, `HEYDOCK_TO_EMAIL`
-3. Public display email → `HEYDOCK_CONTACT_EMAIL` / `content/site.json`
-4. Verified legal operator name, company number, registered office (and jurisdiction/VAT if applicable)
-5. Any approved city list, support hours, complaint SLAs or security certifications before publishing as commitments
-6. Approved public downloads (if any) for NDAs/MSAs/insurance — otherwise keep private
-7. Cloudflare Pages project settings: public visitor access (no sign-in gate), custom domain, production env vars, then indexing only after launch checks
-8. Public crawlability and mobile performance on the deployed URL
+2. Cloudflare Function secrets: `RESEND_API_KEY`, Resend-verified `HEYDOCK_FROM_EMAIL`, `HEYDOCK_TO_EMAIL=hey@heydock.com` — **live inbox delivery not verified in this session**
+3. Any approved city list, support hours, complaint SLAs or security certifications before publishing as commitments
+4. Approved public downloads (if any) for NDAs/MSAs/insurance — otherwise keep private
+5. Cloudflare Pages: public visitor access (no sign-in gate), custom domain, then indexing after launch checks
+6. Public crawlability and mobile performance on the deployed URL
+7. VAT number only if/when verified
 
 ## Deployment reminder
 

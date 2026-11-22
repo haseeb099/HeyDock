@@ -36,6 +36,7 @@ jobs:
           HEYDOCK_OPERATOR_NAME: Example Operator Ltd
           HEYDOCK_COMPANY_NUMBER: '00000000'
           HEYDOCK_REGISTERED_OFFICE: 1 Example Street, London, AA1 1AA
+          HEYDOCK_REGISTRATION_JURISDICTION: England and Wales
         run: |
           python3 build.py
           python3 audit.py
@@ -45,13 +46,37 @@ jobs:
           grep -q 'https://example.com/' dist/sitemap.xml
           grep -q 'rel="canonical" href="https://example.com/"' dist/index.html
           grep -q 'enquiries@example.com' dist/contact.html
-          grep -q 'Example Operator Ltd' dist/terms.html
+          grep -q 'Example Operator Ltd' dist/contact.html
+          grep -q 'HeyDock is a trading name of Example Operator Ltd' dist/contact.html
+          grep -q 'id="company-details"' dist/contact.html
+          grep -q 'href="/contact.html#company-details"' dist/index.html
+          grep -q 'England and Wales' dist/contact.html
           test -f dist/documents.html
           test -f dist/cookies.html
           test -f dist/vendor-onboarding.html
           ! grep -q 'preview-strip' dist/index.html
           ! grep -qi 'pending confirmation' dist/index.html dist/terms.html dist/privacy.html
-          ! grep -qi 'trading as' dist/*.html
+
+      - name: Public build rejects missing required disclosure
+        env:
+          HEYDOCK_ORIGIN: https://example.com
+          HEYDOCK_PUBLIC: '1'
+          HEYDOCK_CONTACT_EMAIL: enquiries@example.com
+          HEYDOCK_OPERATOR_NAME: Example Operator Ltd
+          HEYDOCK_COMPANY_NUMBER: '00000000'
+          HEYDOCK_REGISTERED_OFFICE: 1 Example Street, London, AA1 1AA
+          # Explicit empty override — must fail even when content/site.json has real defaults
+          HEYDOCK_REGISTRATION_JURISDICTION: ''
+        run: |
+          set +e
+          python3 build.py
+          status=$?
+          set -e
+          if [ "$status" -eq 0 ]; then
+            echo 'Expected public build to fail when registration jurisdiction is empty' >&2
+            exit 1
+          fi
+          echo 'Public build correctly rejected empty jurisdiction override'
 
       - name: Enquiry endpoint tests (mocked provider)
         run: node --test tests/enquiry.test.mjs

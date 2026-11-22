@@ -26,7 +26,7 @@ Output directory: `dist`. No pip/npm packages are required for the static build.
 | `HEYDOCK_REGISTRATION_JURISDICTION` | Optional registration jurisdiction. |
 | `HEYDOCK_VAT_NUMBER` | Optional VAT number when verified. |
 
-Verified operator fields also live in `content/site.json` (empty until confirmed). Production builds print a disclosure report for any missing required fields and must not publish “pending confirmation” copy. CI uses synthetic fixture values only.
+Verified operator fields live in `content/site.json` (Infintree Limited / Companies House 17100814 / England and Wales). Environment variables override that file. Public builds (`HEYDOCK_PUBLIC=1`) exit non-zero if operator name, company number, registered office, registration jurisdiction or contact email is missing. Preview builds remain allowed with incomplete fields. CI production fixtures use synthetic values and include a negative empty-jurisdiction override check.
 
 Example production build:
 
@@ -44,16 +44,18 @@ The contact form posts JSON to `POST /api/enquiry` (`functions/api/enquiry.js`).
 | --- | --- | --- |
 | `RESEND_API_KEY` | Yes | Resend API key (`re_…`). Server-side only. |
 | `HEYDOCK_FROM_EMAIL` | Yes | Verified Resend sender, e.g. `HeyDock <hello@your-domain>`. |
-| `HEYDOCK_TO_EMAIL` | Yes | Monitored business inbox that receives enquiries. |
+| `HEYDOCK_TO_EMAIL` | Yes | Monitored business inbox. Production value: `hey@heydock.com`. |
+| `HEYDOCK_FROM_EMAIL` | Yes | Resend-verified sender, e.g. `HeyDock <hello@your-verified-domain>`. |
+| `RESEND_API_KEY` | Yes | Resend API key (`re_…`). Cloudflare secret only. |
 
 Setup steps:
 
 1. Create a Resend account and verify the sending domain (SPF/DKIM/DMARC as Resend instructs).
 2. Create an API key with send permission.
-3. In Cloudflare Pages, set the three variables for Production (and Preview if you want preview submissions).
+3. In Cloudflare Pages, set `RESEND_API_KEY` (secret), `HEYDOCK_FROM_EMAIL` (verified sender) and `HEYDOCK_TO_EMAIL=hey@heydock.com` for Production (and Preview if you want preview submissions).
 4. Deploy so `/api/enquiry` is live on the same host as the static site.
-5. Submit a synthetic enquiry from `/contact.html` and confirm delivery in the monitored inbox.
-6. Set `HEYDOCK_CONTACT_EMAIL` in the **build** environment if you want the address shown on pages.
+5. Submit a synthetic enquiry from `/contact.html` and confirm delivery in `hey@heydock.com`.
+6. Public contact display uses `hey@heydock.com` from `content/site.json` / `HEYDOCK_CONTACT_EMAIL`.
 
 ## Cloudflare Pages deployment
 

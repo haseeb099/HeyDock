@@ -25,10 +25,13 @@ headers=Path('dist/_headers').read_text(encoding='utf-8')
 for f in files:
  t=f.read_text(encoding='utf-8');p=Page(t)
  if len(p.ids)!=len(set(p.ids)):errors.append(f'{f}: duplicate IDs')
- # Legacy parent-company marketing. Allow verified operator name and Microsoft Intune technology refs.
- if re.search(r'trading\s+as', t, re.I):
-  errors.append(f'{f}: trading-as marketing copy')
+ # Legacy parent-company marketing. Allow verified operator name, Microsoft Intune technology refs,
+ # and the approved disclosure: "HeyDock is a trading name of {OPERATOR_NAME}".
  cleaned=t
+ if OPERATOR_NAME:
+  cleaned=re.sub(rf'HeyDock is a trading name of {re.escape(OPERATOR_NAME)}','',cleaned,flags=re.I)
+ if re.search(r'trading\s+(as|name)', cleaned, re.I):
+  errors.append(f'{f}: trading-as marketing copy')
  cleaned=re.sub(r'Microsoft\s+Intune','',cleaned,flags=re.I)
  if OPERATOR_NAME:
   cleaned=cleaned.replace(OPERATOR_NAME,'')
@@ -38,6 +41,10 @@ for f in files:
   errors.append(f'{f}: invented HeyDock Ltd identity')
  if os.environ.get('HEYDOCK_PUBLIC')=='1' and re.search(r'pending confirmation|Preview: operator disclosures incomplete|Incomplete disclosures:', t, re.I):
   errors.append(f'{f}: pending/preview disclosure language on public build')
+ if f.name=='contact.html' and 'id="company-details"' not in t:
+  errors.append(f'{f}: missing company-details section')
+ if 'href="/contact.html#company-details"' not in t:
+  errors.append(f'{f}: missing Company details footer link')
  title=re.search('<title>(.*?)</title>',t).group(1)
  if title in titles:errors.append(f'{f}: duplicate title')
  titles.add(title)

@@ -100,7 +100,7 @@
     },
     {
       "page": "about.html",
-      "main_words": 231,
+      "main_words": 247,
       "faq_count": 0,
       "title": "About HeyDock"
     },
@@ -130,7 +130,7 @@
     },
     {
       "page": "contact.html",
-      "main_words": 314,
+      "main_words": 362,
       "faq_count": 0,
       "title": "Contact and project enquiries"
     },
@@ -142,7 +142,7 @@
     },
     {
       "page": "privacy.html",
-      "main_words": 727,
+      "main_words": 699,
       "faq_count": 0,
       "title": "Privacy notice"
     },
@@ -154,19 +154,19 @@
     },
     {
       "page": "terms.html",
-      "main_words": 447,
+      "main_words": 453,
       "faq_count": 0,
       "title": "Website terms"
     },
     {
       "page": "accessibility.html",
-      "main_words": 216,
+      "main_words": 218,
       "faq_count": 0,
       "title": "Accessibility statement"
     },
     {
       "page": "complaints.html",
-      "main_words": 210,
+      "main_words": 212,
       "faq_count": 0,
       "title": "Complaints"
     },
@@ -178,13 +178,13 @@
     },
     {
       "page": "support-and-escalation.html",
-      "main_words": 171,
+      "main_words": 173,
       "faq_count": 0,
       "title": "Support and escalation"
     },
     {
       "page": "security-and-data-handling.html",
-      "main_words": 289,
+      "main_words": 291,
       "faq_count": 0,
       "title": "Security and data handling"
     },
