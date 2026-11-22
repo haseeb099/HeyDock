@@ -22,6 +22,14 @@ OPERATOR_NAME=os.environ.get('HEYDOCK_OPERATOR_NAME', site.get('operator_name','
 
 errors=[];files=list(Path('dist').rglob('*.html'));titles=set();faqs=0
 headers=Path('dist/_headers').read_text(encoding='utf-8')
+header_rules={}
+for line in headers.splitlines():
+ if len(line)>2000:errors.append('dist/_headers: line exceeds Cloudflare limit')
+ if line and not line[0].isspace():
+  route=line
+ elif line.strip().startswith('Content-Security-Policy:'):
+  header_rules[route]=line
+
 for f in files:
  t=f.read_text(encoding='utf-8');p=Page(t)
  if len(p.ids)!=len(set(p.ids)):errors.append(f'{f}: duplicate IDs')
@@ -59,7 +67,7 @@ for f in files:
   data=json.loads(block)
   faqs+=sum(len(x.get('mainEntity',[])) for x in data['@graph'] if x['@type']=='FAQPage')
   token="sha256-"+base64.b64encode(hashlib.sha256(block.encode()).digest()).decode()
-  if token not in headers:errors.append(f'{f}: missing CSP hash')
+  if token not in header_rules.get("/"+f.relative_to("dist").as_posix(),""):errors.append(f'{f}: missing CSP hash')
  if '<meta name="robots"' not in t or '<link rel="canonical"' not in t:errors.append(f'{f}: missing SEO metadata')
  if 'og:image' not in t:errors.append(f'{f}: missing social image')
 required_docs=['documents.html','cookies.html','complaints.html','support-and-escalation.html','security-and-data-handling.html','vendor-onboarding.html']
