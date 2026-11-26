@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import CtaBand from '../../components/CtaBand.astro';
+const items = (await getCollection('industries')).sort((a, b) => a.data.order - b.data.order);
+---
+<Base title="Industries we work with | HeyDock" description="HeyDock works with professional firms, finance, healthcare, retail and hospitality, public sector organisations and MSPs across the UK." canonicalPath="/industries" keywords="IT services by industry UK, MSP white label, professional services IT">
+  <section class="page-hero"><div class="wrap">
+    <p class="kicker">Industries</p>
+    <h1>Work that respects the workplace</h1>
+    <p class="lede">We do not invent sector accreditations. We do plan around diaries, trading hours, care settings, approval rules and brand agreements when you tell us they matter.</p>
+  </div></section>
+  <section class="section white"><div class="wrap grid-2">
+    {items.map((i) => (
+      <a class="card reveal" href={`/industries/${i.id}`}><h2>{i.data.h1}</h2><p>{i.data.summary}</p><p class="more">Read more</p></a>
+    ))}
+  </div></section>
+  <CtaBand />
+</Base>

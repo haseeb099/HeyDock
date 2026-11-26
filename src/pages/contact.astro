@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+import EnquiryForm from '../components/EnquiryForm.astro';
+import { site } from '../data/site';
+const preselected = Astro.url.searchParams.get('service') || '';
+---
+<Base
+  title="Contact HeyDock | Request a Quote"
+  description={`Contact HeyDock to discuss IT support, dispatch, staffing, cloud or security work. Email ${site.contactEmail} or send a brief through the enquiry form.`}
+  keywords="contact HeyDock, IT support quote UK, engineer dispatch enquiry"
+  canonicalPath="/contact"
+>
+  <section class="page-hero"><div class="wrap">
+    <p class="kicker">Contact</p>
+    <h1>Tell us what you need</h1>
+    <p class="lede">Describe the site, system or hiring need. We typically reply to complete briefs; submitting this form does not create a paid engagement.</p>
+  </div></section>
+  <section class="section white"><div class="wrap split">
+    <div>
+      <h2>Send an enquiry</h2>
+      <EnquiryForm preselected={preselected} />
+    </div>
+    <aside>
+      <h2>Reach us directly</h2>
+      <p>Email <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a><br />
+      Telephone <a href={site.contactPhoneHref}>{site.contactPhone}</a></p>
+      <p>If the form is unavailable, email is the reliable path. Do not include passwords, secrets or unnecessary third-party personal data in an enquiry.</p>
+      <section id="company-details">
+        <h2>Company details</h2>
+        <p>HeyDock is a trading name of {site.operatorName}. Company number {site.companyNumber}. Registered office: {site.registeredOffice}. Registration jurisdiction: {site.registrationJurisdiction}.{site.vatNumber ? ` VAT number ${site.vatNumber}.` : ""}</p>
+        <p>These details are also used for privacy, complaints and accessibility contact via {site.contactEmail}.</p>
+      </section>
+    </aside>
+  </div></section>
+</Base>

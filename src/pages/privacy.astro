@@ -1,0 +1,46 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+<Base title="Privacy Notice | HeyDock" description="How HeyDock and Infintree Limited handle enquiry and website personal data, including processors, retention and your rights." canonicalPath="/privacy" keywords="HeyDock privacy notice, enquiry data protection">
+  <section class="page-hero"><div class="wrap">
+    <p class="kicker">Privacy notice</p>
+    <h1>How enquiry and website data is handled</h1>
+    <p class="lede">This notice explains personal data processing for the HeyDock website and contact form. It is not a substitute for contractual data-processing terms that may apply to a signed engagement.</p>
+  </div></section>
+  <section class="section white"><div class="wrap prose">
+    <h2>Who is responsible</h2>
+    <p>This website presents the HeyDock brand. {site.operatorName} is the legal operator and data controller for website enquiries. HeyDock is a trading name of {site.operatorName}. Full company number, registered office and jurisdiction are listed under <a href="/contact#company-details">Company details</a> on the contact page. Privacy, complaints and accessibility contact: <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>.</p>
+    <p>{site.operatorName} is the data controller for personal data submitted through this website's enquiry form. HeyDock is the customer-facing brand.</p>
+
+    <h2>What we collect</h2>
+    <h3>Enquiry form</h3>
+    <p>When you submit the <a href="/contact">contact form</a>, we process: customer type, service interest, company name, your name, business email, country/city, preferred timing, budget indication, and the free-text description of your requirement. A hidden honeypot field may be submitted for spam checks and is not used for marketing.</p>
+    <h3>Technical request data</h3>
+    <p>Hosting and edge delivery (intended production host: Cloudflare Pages and Pages Functions) may process IP address, user agent, request path, timestamps and similar connection metadata under the host's terms. This site does not add advertising pixels or third-party analytics scripts in the generated pages.</p>
+    <h3>What we ask you not to send</h3>
+    <p>Do not include passwords, authentication secrets, payroll files, special-category data or unnecessary personal data about third parties in the enquiry form.</p>
+
+    <h2>Why we use it</h2>
+    <p>We use enquiry details to acknowledge and respond to your request, assess coverage and scope, prepare a quote where appropriate, and keep records of business correspondence.</p>
+    <ul>
+      <li>Steps prior to a contract (UK GDPR Article 6(1)(b)) where you ask HeyDock to discuss or quote for services.</li>
+      <li>Legitimate interests (Article 6(1)(f)) in operating a business contact channel, preventing spam/abuse, and improving clarity of responses, balanced against your rights.</li>
+    </ul>
+    <p>The form checkbox confirms you understand the enquiry will be sent so HeyDock can respond. It is not consent for marketing newsletters, and submitting an enquiry does not create a paid engagement.</p>
+
+    <h2>Who receives enquiry data</h2>
+    <p>Enquiry payloads are posted from your browser to a same-origin Cloudflare Pages Function (<code>/api/enquiry</code>). The Function validates input and sends an email through Resend to the monitored business inbox configured as <code>HEYDOCK_TO_EMAIL</code>, using the verified sender <code>HEYDOCK_FROM_EMAIL</code>. Your email address is set as the reply-to address so the business can respond.</p>
+    <p>Cloudflare (hosting/Functions) and Resend (email delivery) act as processors or service providers for those technical steps. Mailbox providers for the monitored inbox may also store the message. Staff or contractors handling enquiries for HeyDock may read the message to respond.</p>
+    <p>We do not sell enquiry data. We do not place enquiry text in page URLs or browser local storage via this site's own scripts.</p>
+
+    <h2>Where data may be processed</h2>
+    <p>Cloudflare and Resend may process data in the United Kingdom, European Economic Area, United States or other locations depending on their service configuration. Where a restricted transfer applies, the relevant provider's transfer mechanism (such as standard contractual clauses) applies under their terms. Confirm the live provider regions in each vendor's current documentation after production credentials are issued.</p>
+
+    <h2>How long information is kept</h2>
+    <p>Enquiry emails are retained in the business mailbox and any Resend dashboard history according to those systems' settings and ordinary business correspondence needs—typically long enough to complete the sales discussion and related compliance records, then deleted or archived under the operator's email retention practice. Server validation logs for the Function are limited to non-content failure codes and must not include enquiry bodies or API keys. Exact purge schedules should be confirmed by the operator once production mailboxes are live.</p>
+
+    <h2>Your rights</h2>
+    <p>Depending on applicable UK data protection law, you may have rights to access, rectify, erase, restrict or object to certain processing, and to data portability where relevant. To exercise these rights, contact <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a> or the <a href="/contact">enquiry form</a>. You may also complain to the Information Commissioner's Office (ICO) at <a href="https://ico.org.uk" rel="noopener noreferrer">ico.org.uk</a>.</p>
+  </div></section>
+</Base>

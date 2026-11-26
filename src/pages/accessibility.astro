@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+<Base title="Accessibility Statement | HeyDock" description="Accessibility features on the HeyDock website, known limitations, and how to report a problem." canonicalPath="/accessibility">
+  <section class="page-hero"><div class="wrap">
+    <p class="kicker">Accessibility</p>
+    <h1>Navigating HeyDock more easily</h1>
+    <p class="lede">Accessibility features built into this site, known limitations, and how to report problems.</p>
+  </div></section>
+  <section class="section white"><div class="wrap prose">
+    <h2>What the current site includes</h2>
+    <ul>
+      <li>Skip link to main content</li>
+      <li>Keyboard-operable navigation, including Escape to close the mobile menu</li>
+      <li>Visible focus styles</li>
+      <li>Labelled form controls and native validation</li>
+      <li>Enquiry sending, success and error status messages</li>
+      <li>Responsive layouts and touch-friendly controls</li>
+      <li>Reduced-motion preferences respected for decorative motion</li>
+    </ul>
+    <p>This list describes implemented features. It is not a claim of WCAG conformance or a completed accessibility audit.</p>
+    <h2>Known limitations</h2>
+    <ul>
+      <li>No formal third-party accessibility audit has been completed for this release.</li>
+      <li>Custom select disclosures, if present, progressively enhance native selects; if enhancement fails, native controls remain.</li>
+      <li>Complex service pages are text-heavy; structure relies on headings and lists rather than a separate easy-read edition.</li>
+      <li>PDF or other downloadable policy packs are not yet published; when added they will need their own accessibility review.</li>
+    </ul>
+    <h2>How to report a problem</h2>
+    <p>If you encounter a barrier, email <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a> or write via the <a href="/contact">enquiry form</a>. Please include the page URL, the device or browser if known, and what you were trying to do. We will acknowledge the report through the same channel and aim to assess a practical fix or workaround.</p>
+  </div></section>
+</Base>

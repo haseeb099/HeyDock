@@ -1,0 +1,98 @@
+---
+import { getCollection } from 'astro:content';
+import { CATEGORIES } from '../data/taxonomy';
+
+const all = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const byCat = CATEGORIES.map((c) => ({
+  ...c,
+  items: all.filter((s) => s.data.category === c.name).map((s) => ({ slug: s.id, title: s.data.h1.replace(/ for UK.*$/i, '').replace(/^HeyDock: /, '') })),
+}));
+
+// Shorter labels for mega menu
+function label(h1: string, slug: string) {
+  const map: Record<string, string> = {
+    'it-staffing-recruitment': 'IT staffing & recruitment',
+    'remote-global-staff-recruitment': 'Remote & global recruitment',
+    'technical-staff': 'Technical staff',
+    'non-technical-staff': 'Non-technical staff',
+    staffing: 'Contract & permanent staffing',
+    'remote-technical-talent': 'Remote technical talent',
+    'managed-it-services': 'Managed IT services',
+    'it-support': 'IT support',
+    'helpdesk-end-user-support': 'Helpdesk & end-user support',
+    'chat-support': 'Chat support',
+    'engineer-dispatch': 'Engineer dispatch',
+    'hardware-break-fix': 'Hardware break/fix',
+    'infrastructure-monitoring': 'Infrastructure monitoring',
+    'network-support': 'Network support',
+    'network-wifi': 'Network & Wi-Fi',
+    'business-connectivity-telephony': 'Connectivity & telephony',
+    'data-centre-support': 'Data centre support',
+    'meeting-room-av': 'Meeting room & AV',
+    'it-rollouts-migrations': 'Rollouts & migrations',
+    'it-asset-disposal': 'IT asset disposal',
+    'cloud-solutions': 'Cloud solutions',
+    'cloud-management-support': 'Cloud management',
+    'cloud-migration': 'Cloud migration',
+    'devops-cicd': 'DevOps & CI/CD',
+    'finops-cloud-cost': 'FinOps & cost control',
+    'microsoft-365': 'Microsoft 365',
+    cybersecurity: 'Cybersecurity',
+    'vulnerability-assessment-penetration-testing': 'Vulnerability assessment & testing',
+    'security-operations-soc': 'Security operations (SOC)',
+    'incident-response-forensics': 'Incident response',
+    'compliance-support': 'Compliance support',
+    'zero-trust-architecture': 'Zero-trust architecture',
+    'security-awareness-training': 'Security awareness training',
+    'social-engineering-awareness': 'Social-engineering awareness',
+    'ai-phishing-defence': 'AI-driven phishing defence',
+    'ai-automation': 'AI automation',
+    'custom-software': 'Custom software & websites',
+    'business-software': 'Business software',
+    'it-consulting': 'IT consulting',
+    'digital-transformation': 'Digital transformation',
+    'it-architecture': 'Architecture review',
+    'vendor-selection': 'Vendor selection',
+    'it-cost-optimisation': 'IT cost optimisation',
+    'business-continuity-disaster-recovery': 'Business continuity & DR',
+    'post-merger-it-integration': 'Post-merger IT integration',
+    'it-consultancy-site-surveys': 'Consultancy & site surveys',
+  };
+  return map[slug] || h1;
+}
+---
+<header class="site-header" id="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="/" aria-label="HeyDock home">
+      <span class="mark" aria-hidden="true">h</span>
+      <span>
+        <span class="logo-word">HeyDock</span>
+        <span class="logo-tag">IT services</span>
+      </span>
+    </a>
+    <button class="nav-toggle" type="button" id="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Open navigation">Menu</button>
+    <nav class="main-nav" id="main-nav" aria-label="Primary">
+      <div class="nav-item" data-mega>
+        <button class="nav-btn" type="button" aria-expanded="false" aria-haspopup="true">Services</button>
+        <div class="mega" role="region" aria-label="Services">
+          <div class="mega-grid">
+            {byCat.map((c) => (
+              <div>
+                <h3>{c.name}</h3>
+                {c.items.map((item) => (
+                  <a href={`/services/${item.slug}`}>{label(item.title, item.slug)}</a>
+                ))}
+              </div>
+            ))}
+            <a class="mega-all" href="/services">View all services</a>
+          </div>
+        </div>
+      </div>
+      <a href="/industries">Industries</a>
+      <a href="/how-we-work">How we work</a>
+      <a href="/resources">Resources</a>
+      <a href="/about">About</a>
+      <a class="nav-cta" href="/contact">Get a quote</a>
+    </nav>
+  </div>
+</header>

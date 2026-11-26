@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+<Base title="Website Terms | HeyDock" description="Terms for using the HeyDock website, including how enquiries relate to paid work and the legal operator Infintree Limited." canonicalPath="/terms">
+  <section class="page-hero"><div class="wrap">
+    <p class="kicker">Website terms</p>
+    <h1>Using the HeyDock website</h1>
+    <p class="lede">These terms cover use of this website and how enquiries relate to paid work. They are not a substitute for a signed proposal, statement of work or service agreement.</p>
+  </div></section>
+  <section class="section white"><div class="wrap prose">
+    <h2>Legal operator</h2>
+    <p>This website presents the HeyDock brand. {site.operatorName} is the legal operator and data controller for website enquiries. HeyDock is a trading name of {site.operatorName}. Full company number, registered office and jurisdiction are listed under <a href="/contact#company-details">Company details</a> on the contact page. Privacy, complaints and accessibility contact: <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>.</p>
+    <p>HeyDock remains the brand across this website. Where a legal operator is published, that entity is responsible for the site and for contracts it enters into.</p>
+    <h2>Licence and acceptable use</h2>
+    <p>You may view and download materials from this site for your internal business evaluation of HeyDock services. You must not misuse the site, attempt to disrupt it, scrape it aggressively, or submit unlawful, abusive or deceptive content through forms.</p>
+    <p>Website content is provided for general information. Service availability, pricing, attendance times and support commitments are confirmed only in writing for a specific engagement.</p>
+    <h2>Brand and site materials</h2>
+    <p>HeyDock branding, site design and original text are protected by applicable intellectual-property laws. Software products mentioned in content may be third-party products; referring to a category or product does not transfer ownership of that product. Do not copy the site wholesale or use the HeyDock marks in a way that suggests endorsement without permission.</p>
+    <h2>When an engagement starts</h2>
+    <p>Submitting the website enquiry form sends a request for review. It does not book an engineer, open a support ticket under an SLA, or create a binding contract.</p>
+    <p>An engagement begins only when both parties agree the scope and commercial terms in a written proposal, statement of work, order form or other signed or accepted service agreement. Until then, either party may decline to proceed.</p>
+    <p>Quotes are based on the information supplied. Material changes to location, access, scope, timing or equipment may require a revised quote.</p>
+    <h2>Governing documents for paid work</h2>
+    <p>Signed proposals and service agreements govern deliverables, fees, expenses, service hours, escalation, liability and termination for paid work. Website terms do not override those documents. Partner white-label rules, if any, are set out in the partner agreement and work orders.</p>
+    <h2>Liability for the website</h2>
+    <p>We aim to keep website information accurate but do not warrant that every page is complete or current. To the fullest extent permitted by law, HeyDock is not liable for decisions made solely in reliance on marketing pages without a written agreement. Nothing in these terms excludes liability that cannot be excluded under applicable law.</p>
+  </div></section>
+</Base>

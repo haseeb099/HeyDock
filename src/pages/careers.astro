@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site } from '../data/site';
+---
+<Base title="Careers at HeyDock" description="How to express interest in working with HeyDock, including engineering, support and specialist roles. We list live vacancies when we have them; we do not invent a hiring volume." canonicalPath="/careers" keywords="HeyDock careers, IT engineer jobs UK, MSP field engineer">
+  <section class="page-hero"><div class="wrap">
+    <p class="kicker">Careers</p>
+    <h1>Work with HeyDock</h1>
+    <p class="lede">We hire when there is real work to do. This page is how to introduce yourself; it is not a list of vacancies we do not have.</p>
+  </div></section>
+  <section class="section white"><div class="wrap prose">
+    <h2>How to get in touch</h2>
+    <p>If you are an engineer, support specialist, or other practitioner interested in on-site, remote or mixed work in the UK, email {site.contactEmail} with a short note on the skills you have, the geographies you can cover, and whether you prefer employment or contracting.</p>
+    <p>We will not invent a careers portal or a graduate scheme here. If a specific vacancy is open, we will describe it plainly, including whether it is employed or contract, and where the work actually happens.</p>
+    <h2>What the work is like</h2>
+    <p>Much of our delivery is site work, remote support, and specialist project effort for businesses and for MSP partners. Reliability, clear writing, and respect for a client's brand and site rules matter as much as a tool list.</p>
+    <p>If you are looking for IT services rather than a role, use the <a href="/contact">contact form</a> instead.</p>
+  </div></section>
+  <CtaBand title="Looking for IT help, not a job?" />
+</Base>

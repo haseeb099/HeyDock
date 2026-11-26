@@ -1,0 +1,145 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { CATEGORIES } from '../data/taxonomy';
+import { site } from '../data/site';
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const highlights = [
+  'it-support',
+  'engineer-dispatch',
+  'managed-it-services',
+  'it-staffing-recruitment',
+  'cybersecurity',
+  'cloud-solutions',
+].map((id) => services.find((s) => s.id === id)).filter(Boolean);
+const industries = (await getCollection('industries')).sort((a, b) => a.data.order - b.data.order);
+const resources = (await getCollection('resources')).sort((a, b) => a.data.order - b.data.order).slice(0, 3);
+const faqs = [
+  { q: 'Can you work under our brand?', a: 'Yes, for MSP partners, where that is agreed in writing. Engineers can introduce themselves under your brand, and reports can be written so you can pass them on.' },
+  { q: 'Can I start with a single engineer visit?', a: 'Yes. A one-off visit is a normal first engagement, after city, skills and access are confirmed. A visit is not treated as booked until that confirmation exists.' },
+  { q: 'Do you cover every UK postcode?', a: 'No. We confirm each site. Some locations will not be possible on the timescale you want, and we will say so rather than imply a national guarantee.' },
+  { q: 'What should I include in a project brief?', a: 'The location or systems, the work you want done, the timing, and any access, brand or compliance constraint. A short, specific brief is more useful than a long, vague one.' },
+];
+const faqLd = {
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+<Base
+  title="On-site IT Support and Engineer Dispatch UK | HeyDock"
+  description="HeyDock provides on-site IT support and engineer dispatch for UK businesses and MSPs, plus staffing, managed IT, cloud, cybersecurity, software and AI automation."
+  keywords="IT support UK, engineer dispatch, managed IT services, IT staffing UK, cybersecurity UK, cloud management"
+  canonicalPath="/"
+  jsonLd={[faqLd]}
+>
+  <section class="hero">
+    <div class="wrap hero-panel">
+      <div>
+        <p class="eyebrow">On-site IT · Engineer dispatch · UK</p>
+        <h1>On-site IT support and engineer dispatch for UK businesses and MSPs</h1>
+        <p class="lede">Book local engineers for desktop break/fix, device rollouts, office moves and white-label site work. Managed IT, staffing, cloud, cybersecurity, software and AI automation stay available when you need them.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="/contact">Get a quote</a>
+          <a class="btn btn-ghost" href="/services">Explore services</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <h2>Start with a confirmed brief</h2>
+        <ul>
+          <li>City, skills and access confirmed before a visit is booked</li>
+          <li>White-label attendance for MSP partners where contracted</li>
+          <li>Remote support first when it can finish the job</li>
+          <li>No invented coverage maps, reviews or savings figures</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section white">
+    <div class="wrap">
+      <p class="kicker">Services</p>
+      <h2>A full services practice, still booked with a brief</h2>
+      <p class="lead">From a single site visit to staffing, cloud, security and software, every offer has its own page with scope and limits.</p>
+      <div class="grid-3" style="margin-top:2rem">
+        {highlights.map((s) => (
+          <a class="card reveal" href={`/services/${s.id}`}>
+            <h3>{s.data.h1}</h3>
+            <p>{s.data.summary}</p>
+            <p class="more">Read more</p>
+          </a>
+        ))}
+      </div>
+      <p style="margin-top:1.8rem"><a href="/services">View all {services.length} services</a>, grouped into {CATEGORIES.length} categories.</p>
+    </div>
+  </section>
+
+  <section class="section pale">
+    <div class="wrap">
+      <p class="kicker">Industries</p>
+      <h2>Work that respects the workplace</h2>
+      <p class="lead">Professional firms, finance, healthcare, retail and hospitality, public sector organisations, and MSPs who need white-label capacity.</p>
+      <div class="grid-3" style="margin-top:2rem">
+        {industries.map((i) => (
+          <a class="card reveal" href={`/industries/${i.id}`}>
+            <h3>{i.data.h1}</h3>
+            <p>{i.data.summary}</p>
+            <p class="more">Read more</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section white">
+    <div class="wrap">
+      <p class="kicker">How we work</p>
+      <h2>Understand, scope, deliver, support</h2>
+      <ol class="process" style="margin-top:1.5rem">
+        <li class="reveal"><span class="num">1</span><h3>Understand</h3><p>We learn the site, the systems and the constraint you do not want us to discover later.</p></li>
+        <li class="reveal"><span class="num">2</span><h3>Scope</h3><p>You get a written picture of what is in, what is out, and what 'done' looks like.</p></li>
+        <li class="reveal"><span class="num">3</span><h3>Deliver</h3><p>Visits are confirmed, changes have a window, and we stop at the agreed scope unless you enlarge it.</p></li>
+        <li class="reveal"><span class="num">4</span><h3>Support</h3><p>Handover includes a way to raise the next issue. Ongoing support, if you want it, is a written arrangement.</p></li>
+      </ol>
+      <p style="margin-top:1.5rem"><a href="/how-we-work">Read how we work</a></p>
+    </div>
+  </section>
+
+  <section class="section pale">
+    <div class="wrap">
+      <p class="kicker">Resources</p>
+      <h2>Practical guides before a conversation</h2>
+      <div class="grid-3" style="margin-top:2rem">
+        {resources.map((r) => (
+          <a class="card reveal" href={`/resources/${r.id}`}>
+            <h3>{r.data.h1}</h3>
+            <p>{r.data.summary}</p>
+            <p class="more">Read the guide</p>
+          </a>
+        ))}
+      </div>
+      <p style="margin-top:1.5rem"><a href="/resources">All guides</a></p>
+    </div>
+  </section>
+
+  <section class="section white">
+    <div class="wrap">
+      <p class="kicker">Questions</p>
+      <h2>Questions about working with HeyDock</h2>
+      <div class="faq">
+        {faqs.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+  <CtaBand title="Tell us what you need" />
+</Base>

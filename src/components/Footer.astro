@@ -1,0 +1,57 @@
+---
+import { site } from '../data/site';
+---
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h2>HeyDock</h2>
+        <p>On-site IT support, managed services, staffing, cloud, cybersecurity and software for UK businesses and MSPs.</p>
+        <p><a href={site.contactPhoneHref}>{site.contactPhone}</a><br />
+        <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a></p>
+      </div>
+      <div>
+        <h3>Services</h3>
+        <ul>
+          <li><a href="/services">All services</a></li>
+          <li><a href="/services/it-support">IT support</a></li>
+          <li><a href="/services/managed-it-services">Managed IT</a></li>
+          <li><a href="/services/it-staffing-recruitment">IT staffing</a></li>
+          <li><a href="/services/cybersecurity">Cybersecurity</a></li>
+          <li><a href="/services/cloud-solutions">Cloud solutions</a></li>
+          <li><a href="/services/ai-automation">AI automation</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Company</h3>
+        <ul>
+          <li><a href="/about">About HeyDock</a></li>
+          <li><a href="/how-we-work">How we work</a></li>
+          <li><a href="/industries">Industries</a></li>
+          <li><a href="/coverage">Coverage</a></li>
+          <li><a href="/partners">IT partners</a></li>
+          <li><a href="/careers">Careers</a></li>
+          <li><a href="/contact">Contact</a></li>
+          <li><a href="/contact#company-details">Company details</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Policies</h3>
+        <ul>
+          <li><a href="/documents">Documents</a></li>
+          <li><a href="/privacy">Privacy</a></li>
+          <li><a href="/cookies">Cookies</a></li>
+          <li><a href="/terms">Website terms</a></li>
+          <li><a href="/accessibility">Accessibility</a></li>
+          <li><a href="/complaints">Complaints</a></li>
+          <li><a href="/security-and-data-handling">Security &amp; data handling</a></li>
+          <li><a href="/vendor-onboarding">Vendor onboarding</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© {new Date().getFullYear()} HeyDock. HeyDock is a trading name of {site.operatorName}. Company number {site.companyNumber}.</span>
+      <span><a href="/support-and-escalation">Support &amp; escalation</a></span>
+    </div>
+  </div>
+</footer>

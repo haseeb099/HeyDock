@@ -1,0 +1,113 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath: string;
+  keywords?: string;
+  type?: 'WebPage' | 'AboutPage' | 'ContactPage' | 'CollectionPage';
+  jsonLd?: Record<string, unknown>[];
+  noindex?: boolean;
+  ogTitle?: string;
+}
+
+const {
+  title,
+  description,
+  canonicalPath,
+  keywords,
+  jsonLd = [],
+  noindex,
+  ogTitle,
+} = Astro.props;
+
+const path = canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`;
+const canonical = `${site.origin}${path === '/' ? '/' : path}`;
+const robots = noindex || !site.isPublic ? 'noindex, nofollow' : 'index, follow, max-image-preview:large';
+const ogImage = `${site.origin}/social-preview.png`;
+
+const graph = [
+  {
+    '@type': 'Organization',
+    '@id': `${site.origin}/#organization`,
+    name: site.brand,
+    url: `${site.origin}/`,
+    email: site.contactEmail,
+    telephone: site.contactPhone,
+    description: 'IT services, software implementation, technical staffing and AI automation for UK businesses and MSPs.',
+    legalName: site.operatorName,
+    identifier: site.companyNumber,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: site.registeredOffice,
+      addressCountry: 'GB',
+    },
+  },
+  {
+    '@type': 'LocalBusiness',
+    '@id': `${site.origin}/#localbusiness`,
+    name: site.brand,
+    url: `${site.origin}/`,
+    email: site.contactEmail,
+    telephone: site.contactPhone,
+    image: ogImage,
+    parentOrganization: { '@id': `${site.origin}/#organization` },
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: site.registeredOffice,
+      addressLocality: 'Hatfield',
+      postalCode: 'AL10 0LU',
+      addressCountry: 'GB',
+    },
+    areaServed: ['United Kingdom'],
+  },
+  {
+    '@type': 'WebSite',
+    '@id': `${site.origin}/#website`,
+    name: site.brand,
+    url: `${site.origin}/`,
+    publisher: { '@id': `${site.origin}/#organization` },
+    inLanguage: 'en-GB',
+  },
+  ...jsonLd,
+];
+---
+<!doctype html>
+<html lang="en-GB" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {keywords && <meta name="keywords" content={keywords} />}
+    <meta name="theme-color" content="#0b1c2c" />
+    <meta name="robots" content={robots} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.brand} />
+    <meta property="og:title" content={ogTitle || title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content="HeyDock — IT services, software and AI automation" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={ogTitle || title} />
+    <meta name="twitter:description" content={description} />
+    <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@graph': graph })} />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <script is:inline src="/scripts/app.js" defer></script>
+  </body>
+</html>

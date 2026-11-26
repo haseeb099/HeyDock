@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import CtaBand from '../../components/CtaBand.astro';
+const items = (await getCollection('resources')).sort((a, b) => a.data.order - b.data.order);
+---
+<Base title="IT Planning Guides and Resources | HeyDock" description="Practical HeyDock guides on IT support SLAs, remote hiring, ethical phishing simulations, cloud cost, rollouts, software choice and AI pilots." canonicalPath="/resources" keywords="IT planning guides, IT SLA checklist, ethical phishing simulation, cloud cost leaks">
+  <section class="page-hero"><div class="wrap">
+    <p class="kicker">Resources</p>
+    <h1>Practical guides before a technical conversation</h1>
+    <p class="lede">Short, usable articles. No invented case studies, and no promise that reading a guide replaces a brief.</p>
+  </div></section>
+  <section class="section white"><div class="wrap grid-3">
+    {items.map((r) => (
+      <a class="card reveal" href={`/resources/${r.id}`}><h2>{r.data.h1}</h2><p>{r.data.summary}</p><p class="more">Read the guide</p></a>
+    ))}
+  </div></section>
+  <CtaBand />
+</Base>

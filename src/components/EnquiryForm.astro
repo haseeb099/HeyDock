@@ -1,0 +1,70 @@
+---
+import { getCollection } from 'astro:content';
+import { CATEGORIES } from '../data/taxonomy';
+
+interface Props { preselected?: string; }
+const { preselected = '' } = Astro.props;
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const groups = CATEGORIES.map((c) => ({
+  name: c.name,
+  items: services.filter((s) => s.data.category === c.name),
+}));
+const timings = ['Exploring options', 'Within 2 weeks', 'Within 1 month', 'Within 3 months', 'Specific date to discuss'];
+const budgets = ['To be scoped', 'Under £1,000', '£1,000–£5,000', '£5,000–£15,000', '£15,000+'];
+---
+<form class="form" id="enquiry-form" method="post" action="/api/enquiry" novalidate>
+  <div class="hp" aria-hidden="true">
+    <label>Website <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+  </div>
+  <label>
+    I am
+    <select name="audience" required>
+      <option value="business">A business looking for help</option>
+      <option value="partner">An IT partner or MSP</option>
+    </select>
+  </label>
+  <label>
+    Service of interest
+    <select name="service" required>
+      <option value="">Select a service</option>
+      {groups.map((g) => (
+        <optgroup label={g.name}>
+          {g.items.map((s) => (
+            <option value={s.id} selected={preselected === s.id}>{s.data.h1}</option>
+          ))}
+        </optgroup>
+      ))}
+      <option value="coverage" selected={preselected === 'coverage'}>Coverage / location check</option>
+    </select>
+  </label>
+  <label>Company name <input type="text" name="company" maxlength="150" required autocomplete="organization" /></label>
+  <label>Your name <input type="text" name="name" maxlength="120" required autocomplete="name" /></label>
+  <label>Business email <input type="email" name="email" maxlength="180" required autocomplete="email" /></label>
+  <label>Country / city <input type="text" name="location" maxlength="150" required autocomplete="address-level2" /></label>
+  <label>
+    Timing
+    <select name="timing" required>
+      {timings.map((t) => <option value={t}>{t}</option>)}
+    </select>
+  </label>
+  <label>
+    Budget indication
+    <select name="budget" required>
+      {budgets.map((t) => <option value={t}>{t}</option>)}
+    </select>
+  </label>
+  <label>
+    What do you need?
+    <textarea name="scope" rows="6" minlength="15" maxlength="5000" required placeholder="Sites, systems, skills, timing and any constraints we should know about."></textarea>
+  </label>
+  <label class="consent">
+    <input type="checkbox" name="consent" required />
+    <span>I understand this enquiry will be sent so HeyDock can respond. It is not consent for marketing, and it does not create a paid engagement.</span>
+  </label>
+  <button class="btn btn-navy" type="submit">Send enquiry</button>
+  <p class="form-status" id="enquiry-status" hidden></p>
+</form>
+<div id="enquiry-success" hidden tabindex="-1">
+  <h2>Enquiry sent</h2>
+  <p>Thank you. If you do not hear back, email us directly using the address on this page.</p>
+</div>

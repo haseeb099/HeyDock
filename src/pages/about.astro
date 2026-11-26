@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site } from '../data/site';
+---
+<Base title="About HeyDock | Infintree Limited" description="HeyDock is the customer-facing IT services brand of Infintree Limited, a private limited company registered in England and Wales, offering on-site support, staffing, cloud, security and software help." keywords="about HeyDock, Infintree Limited, IT company Hatfield" canonicalPath="/about">
+  <section class="page-hero"><div class="wrap">
+    <p class="kicker">About</p>
+    <h1>HeyDock is the brand. Infintree Limited is the operator.</h1>
+    <p class="lede">We provide IT services to UK businesses and MSPs: on-site support and engineer dispatch, staffing, managed IT, cloud, cybersecurity, software and consulting. We would rather confirm a visit than invent a coverage map.</p>
+  </div></section>
+  <section class="section white"><div class="wrap prose">
+    <h2>Who we are</h2>
+    <p>HeyDock is a trading name of {site.operatorName}, a private limited company with company number {site.companyNumber}, registered in {site.registrationJurisdiction}. The registered office is {site.registeredOffice}. Contact: {site.contactEmail} and {site.contactPhone}.</p>
+    <p>We started from on-site IT support and engineer dispatch for businesses and for MSP partners who need white-label delivery. The practice now also covers hiring, managed services, networks, cloud, security, software and advice. Each of those has its own page, with limits written in ordinary language.</p>
+    <h2>How we prefer to work</h2>
+    <p>A written brief, a confirmed attendance when a visit is required, and no statistics we cannot evidence. We do not publish client logos or testimonials we have not been given permission to use, and we do not claim certifications or savings figures on this site.</p>
+    <h2>Where we work</h2>
+    <p>The registered office is in Hatfield. Delivery is planned per request across the UK, and sometimes further afield when location, language and access can be confirmed. We do not treat a pin on a map as a promise. See <a href="/coverage">coverage</a> for how we confirm a site.</p>
+    <p>If you want to work with us, <a href="/careers">careers</a> explains how to get in touch. Company details are repeated on the <a href="/contact#company-details">contact page</a>.</p>
+  </div></section>
+  <CtaBand />
+</Base>

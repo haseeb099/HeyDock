@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+<Base title="Security and Data Handling | HeyDock" description="How HeyDock handles site access, credentials and customer information during engagements. This page does not claim certifications." canonicalPath="/security-and-data-handling">
+  <section class="page-hero"><div class="wrap">
+    <p class="kicker">Security and data handling</p>
+    <h1>Practical controls for customer work</h1>
+    <p class="lede">Customer-facing information about access, credentials and information handling during HeyDock engagements. Practices needing owner confirmation are flagged below.</p>
+  </div></section>
+  <section class="section white"><div class="wrap prose">
+    <h2>On-site behaviour</h2>
+    <p>Engineers attend only with an approved work order and site instructions. They should follow host security rules, wear required identification, and limit access to areas needed for the task. Photography and asset capture follow the customer or partner rules stated in the work order.</p>
+    <h2>Credentials and systems</h2>
+    <p>Do not send passwords or privileged credentials through the public website enquiry form. Prefer customer-controlled accounts, time-limited access or an agreed secure channel named in the engagement. Access should be removed or rotated after the work where the customer controls identity systems.</p>
+    <h2>Equipment and data</h2>
+    <p>Customer equipment and media are handled only as authorised. Spares and failed parts follow the ownership and return rules in the work order. Customer data obtained for a task should be used only for that task; deletion or return follows the method agreed for the engagement (for example wipe confirmation, physical return, or customer-led revocation of access).</p>
+    <h2>Reporting problems</h2>
+    <p>Suspected security incidents related to a HeyDock engagement should be reported immediately through the escalation contacts in your agreement or via <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a> or the <a href="/contact">enquiry form</a>. Preserve relevant logs where safe to do so and avoid circulating credentials in email threads.</p>
+    <h2>Owner review required</h2>
+    <p>Flagged for owner confirmation before stronger public claims:</p>
+    <ul>
+      <li>Named security certifications, accreditations or audit reports</li>
+      <li>Company-wide encryption or device-management standards</li>
+      <li>Formal incident-response SLAs or cyber-insurance limits</li>
+      <li>Standard DPA templates published for download</li>
+    </ul>
+    <p>Until confirmed, this page describes process expectations only and does not claim certification or guaranteed outcomes.</p>
+  </div></section>
+</Base>

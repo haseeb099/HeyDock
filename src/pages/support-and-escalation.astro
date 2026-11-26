@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+<Base title="Support and Escalation | HeyDock" description="How to request support from HeyDock and how urgency is assessed. Coverage hours and response targets are only those in your agreement." canonicalPath="/support-and-escalation">
+  <section class="page-hero"><div class="wrap">
+    <p class="kicker">Support and escalation</p>
+    <h1>How to ask for help clearly</h1>
+    <p class="lede">Use this page for the general support model. Coverage hours and response targets are those written into your client or partner agreement—not generic website promises.</p>
+  </div></section>
+  <section class="section white"><div class="wrap prose">
+    <h2>What to provide</h2>
+    <p>Contact the channel named in your agreement, or <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a> or the <a href="/contact">enquiry form</a> for pre-contract questions. Include impact, location, affected systems or users, recent changes, and any ticket or work-order reference.</p>
+    <h2>How HeyDock assesses priority</h2>
+    <p>We assess urgency from business impact, safety or risk, number of users affected, and whether a workaround exists. Escalation follows the contacts named for your engagement (for example service desk to technical lead to account owner). Partners retain end-customer communication unless the work order says otherwise.</p>
+    <h2>Where coverage commitments are defined</h2>
+    <p>Support hours, on-site attendance targets, penalties and 24/7 cover are not advertised as universal website promises. They are set out only in the agreement that applies to your account. If no agreement exists yet, an enquiry starts a scoping discussion only.</p>
+  </div></section>
+</Base>

@@ -1,0 +1,120 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { site } from '../../data/site';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('services');
+  return pages.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const all = await getCollection('services');
+const related = entry.data.related
+  .map((id) => all.find((s) => s.id === id))
+  .filter(Boolean);
+
+const serviceLd = {
+  '@type': 'Service',
+  '@id': `${site.origin}/services/${entry.id}#service`,
+  name: entry.data.h1,
+  description: entry.data.description,
+  serviceType: entry.data.category,
+  provider: { '@id': `${site.origin}/#organization` },
+  areaServed: 'United Kingdom',
+  url: `${site.origin}/services/${entry.id}`,
+};
+const faqLd = {
+  '@type': 'FAQPage',
+  '@id': `${site.origin}/services/${entry.id}#faq`,
+  mainEntity: entry.data.faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+const crumbs = {
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${site.origin}/` },
+    { '@type': 'ListItem', position: 2, name: 'Services', item: `${site.origin}/services` },
+    { '@type': 'ListItem', position: 3, name: entry.data.h1, item: `${site.origin}/services/${entry.id}` },
+  ],
+};
+---
+<Base
+  title={entry.data.title}
+  description={entry.data.description}
+  keywords={entry.data.keywords}
+  canonicalPath={`/services/${entry.id}`}
+  jsonLd={[serviceLd, faqLd, crumbs]}
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker">{entry.data.category}</p>
+      <h1>{entry.data.h1}</h1>
+      <p class="lede">{entry.data.summary}</p>
+      <div class="actions" style="margin-top:1.4rem">
+        <a class="btn btn-navy" href={`/contact?service=${entry.id}`}>Get a quote</a>
+        <a class="btn btn-line" href="/services">All services</a>
+      </div>
+    </div>
+  </section>
+  <section class="section white">
+    <div class="wrap split">
+      <article class="prose reveal">
+        <Content />
+      </article>
+      <aside>
+        <div class="include-box reveal">
+          <h2>What we deliver</h2>
+          <ul class="include-list">
+            {entry.data.includes.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+        <div class="who reveal">
+          <h2>Who it is for</h2>
+          <ul class="include-list">
+            {entry.data.audience.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+        <div class="process reveal">
+          <h2>How the work runs</h2>
+          <ol>
+            {entry.data.process.map((step, i) => (
+              <li><span class="num">{i + 1}</span><h3>{step.title}</h3><p>{step.text}</p></li>
+            ))}
+          </ol>
+        </div>
+      </aside>
+    </div>
+    <div class="wrap">
+      <div class="faq reveal">
+        <h2>Questions</h2>
+        {entry.data.faqs.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+      {related.length > 0 && (
+        <div class="related reveal">
+          <h2>Related services</h2>
+          <div class="grid-3">
+            {related.map((r) => (
+              <a class="card" href={`/services/${r.id}`}>
+                <h3>{r.data.h1}</h3>
+                <p>{r.data.summary}</p>
+                <p class="more">Read more</p>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  </section>
+  <CtaBand service={entry.id} title="Request a quote for this service" />
+</Base>

@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+---
+<Base title="Complaints | HeyDock" description="How to raise a complaint about HeyDock website handling or a service discussion, and what happens next." canonicalPath="/complaints">
+  <section class="page-hero"><div class="wrap">
+    <p class="kicker">Complaints</p>
+    <h1>Tell us when something is wrong</h1>
+    <p class="lede">How to raise a complaint about HeyDock website handling or a service discussion. Contractual dispute processes in a signed agreement take priority for that engagement.</p>
+  </div></section>
+  <section class="section white"><div class="wrap prose">
+    <h2>How to raise a complaint</h2>
+    <p>Contact <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a> or the <a href="/contact">enquiry form</a>. Include:</p>
+    <ul>
+      <li>Your name, company and preferred reply email</li>
+      <li>A clear description of the issue and when it happened</li>
+      <li>Any relevant enquiry reference, quote or site location</li>
+      <li>The outcome you are seeking</li>
+    </ul>
+    <p>Do not include passwords or unnecessary sensitive personal data.</p>
+    <h2>What happens next</h2>
+    <p>We review complaints sent through the published contact channel, acknowledge receipt, and investigate with the people involved in the enquiry or delivery discussion. You should receive a substantive response once the facts are checked.</p>
+    <p>No fixed public response-time targets are published on this page because HeyDock has not approved numbered complaint SLAs for the website. If a signed client agreement sets complaint or escalation timelines, those contractual terms apply to that client.</p>
+    <h2>If you remain dissatisfied</h2>
+    <p>Ask for the complaint to be reviewed by a more senior contact via the same channel. For privacy complaints you may also contact the <a href="https://ico.org.uk" rel="noopener noreferrer">ICO</a>. For contractual disputes, follow the dispute clause in your agreement.</p>
+  </div></section>
+</Base>
