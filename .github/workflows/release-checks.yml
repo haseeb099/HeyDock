@@ -6,80 +6,40 @@ on:
     branches: [main]
 
 jobs:
-  checks:
+  check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-
-      - name: Preview build
-        run: python3 build.py
-
-      - name: Audit generated site
-        run: python3 audit.py
-
-      - name: JavaScript syntax check
-        run: node --check dist/app.js
-
-      - name: Production-mode build fixture
-        env:
-          HEYDOCK_ORIGIN: https://example.com
-          HEYDOCK_PUBLIC: '1'
-          HEYDOCK_CONTACT_EMAIL: enquiries@example.com
-          HEYDOCK_OPERATOR_NAME: Example Operator Ltd
-          HEYDOCK_COMPANY_NUMBER: '00000000'
-          HEYDOCK_REGISTERED_OFFICE: 1 Example Street, London, AA1 1AA
-          HEYDOCK_REGISTRATION_JURISDICTION: England and Wales
-        run: |
-          python3 build.py
-          python3 audit.py
-          test -f dist/robots.txt
-          grep -q 'Allow: /' dist/robots.txt
-          grep -q 'Sitemap: https://example.com/sitemap.xml' dist/robots.txt
-          grep -q 'https://example.com/' dist/sitemap.xml
-          grep -q 'rel="canonical" href="https://example.com/"' dist/index.html
-          grep -q 'enquiries@example.com' dist/contact.html
-          grep -q 'Example Operator Ltd' dist/contact.html
-          grep -q 'HeyDock is a trading name of Example Operator Ltd' dist/contact.html
-          grep -q 'id="company-details"' dist/contact.html
-          grep -q 'href="/contact.html#company-details"' dist/index.html
-          grep -q 'England and Wales' dist/contact.html
-          test -f dist/documents.html
-          test -f dist/cookies.html
-          test -f dist/vendor-onboarding.html
-          ! grep -q 'preview-strip' dist/index.html
-          ! grep -qi 'pending confirmation' dist/index.html dist/terms.html dist/privacy.html
-
-      - name: Public build rejects missing required disclosure
-        env:
-          HEYDOCK_ORIGIN: https://example.com
-          HEYDOCK_PUBLIC: '1'
-          HEYDOCK_CONTACT_EMAIL: enquiries@example.com
-          HEYDOCK_OPERATOR_NAME: Example Operator Ltd
-          HEYDOCK_COMPANY_NUMBER: '00000000'
-          HEYDOCK_REGISTERED_OFFICE: 1 Example Street, London, AA1 1AA
-          # Explicit empty override — must fail even when content/site.json has real defaults
-          HEYDOCK_REGISTRATION_JURISDICTION: ''
+          node-version: 20
+          cache: npm
+      - name: Install
+        run: npm ci
+      - name: Preview build (noindex unless HEYDOCK_PUBLIC=1)
+        run: npm run build
+      - name: Tests (enquiry + site audit)
+        run: npm test
+      - name: Public build must fail without registration jurisdiction
         run: |
           set +e
-          python3 build.py
+          HEYDOCK_PUBLIC=1 HEYDOCK_ORIGIN=https://hdocks.com HEYDOCK_REGISTRATION_JURISDICTION= npm run build
           status=$?
           set -e
           if [ "$status" -eq 0 ]; then
-            echo 'Expected public build to fail when registration jurisdiction is empty' >&2
+            echo "expected the public build to fail when HEYDOCK_REGISTRATION_JURISDICTION is empty" >&2
             exit 1
           fi
-          echo 'Public build correctly rejected empty jurisdiction override'
-
-      - name: Enquiry endpoint tests (mocked provider)
-        run: node --test tests/enquiry.test.mjs
-
-      - name: Restore preview build artefact
-        run: python3 build.py
+      - name: Public production fixture
+        env:
+          HEYDOCK_PUBLIC: "1"
+          HEYDOCK_ORIGIN: https://hdocks.com
+        run: |
+          npm run build
+          grep -q 'HeyDock is a trading name of' dist/contact/index.html
+          grep -q 'id="company-details"' dist/contact/index.html
+          grep -R --include='*.html' -l 'href="/contact#company-details"' dist | grep -q .
+          grep -q 'Allow: /' dist/robots.txt
+          grep -q 'Sitemap: https://hdocks.com/sitemap-index.xml' dist/robots.txt
+          grep -q 'index, follow' dist/index.html
+          ! grep -R --include='*.html' -E 'href="[^"]+\.html|src="[^"]+\.html' dist

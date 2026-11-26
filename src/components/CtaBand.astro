@@ -1,0 +1,23 @@
+---
+interface Props {
+  title?: string;
+  text?: string;
+  service?: string;
+}
+const {
+  title = 'Tell us what you need',
+  text = 'Describe the site, system or hiring need and we will come back with a practical next step. Submitting an enquiry does not create a paid engagement.',
+  service,
+} = Astro.props;
+const href = service ? `/contact?service=${encodeURIComponent(service)}` : '/contact';
+---
+<section class="cta-band">
+  <div class="wrap">
+    <h2>{title}</h2>
+    <p>{text}</p>
+    <div class="actions" style="margin-top:1.4rem">
+      <a class="btn btn-primary" href={href}>Get a quote</a>
+      <a class="btn btn-ghost" href="/services">Explore services</a>
+    </div>
+  </div>
+</section>

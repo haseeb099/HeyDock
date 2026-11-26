@@ -1,0 +1,21 @@
+{
+  "name": "heydock-website",
+  "type": "module",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build && node scripts/postbuild.mjs",
+    "preview": "astro preview",
+    "test": "node --test tests/enquiry.test.mjs tests/site-audit.test.mjs"
+  },
+  "dependencies": {
+    "astro": "^5.15.9"
+  },
+  "devDependencies": {
+    "@astrojs/sitemap": "^3.6.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
