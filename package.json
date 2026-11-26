@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node scripts/postbuild.mjs",
+    "build": "node scripts/decode-assets.mjs && astro build && node scripts/postbuild.mjs",
     "preview": "astro preview",
     "test": "node --test tests/enquiry.test.mjs tests/site-audit.test.mjs"
   },
